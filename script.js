@@ -95,7 +95,7 @@ function isInViewport(element){
   var elementBottom = elementTop + element.outerHeight();
   var viewportTop = $(window).scrollTop();
   var viewportBottom = viewportTop + $(window).height();
-  return elementBottom < viewportBottom + 10;
+  return elementBottom < viewportBottom + 20;
 };
 
 function animateBlocksSmall() {
