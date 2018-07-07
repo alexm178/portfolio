@@ -104,11 +104,10 @@ function animateBlocksSmall() {
   })
   $(document.getElementById(state.text[state.watching])).animate({
     left: "0px"
-  }, () => {
-    if (state.watching < state.blocks.length -1) {
-      state.watching++
-    }
   })
+  if (state.watching < state.blocks.length -1) {
+    state.watching++
+  }
 }
 
 function animateBlocksLarge() {
