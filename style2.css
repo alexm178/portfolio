@@ -1,0 +1,164 @@
+.all{
+  margin: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+
+#header{
+  height: 100vh;
+  background-image: url(./test2.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  -ms-box-sizing:     border-box;
+  -o-box-sizing:      border-box;
+  box-sizing:         border-box;
+ font-family: 'Titillium Web', sans-serif;
+
+ -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+ -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+ max-width: 100%;
+ width: 100vw;
+}
+
+#header-text{
+  color: white;
+  display: none;
+}
+
+#header-footer{
+  color: white;
+  font-size: 5vh;
+}
+
+.chev-down{
+  color: white;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 4em;
+  display: none;
+  line-height: 1px;
+}
+
+.heading{
+  color: white;  /* Fallback: assume this color ON TOP of image */
+   background: url(./test2.jpeg) no-repeat center;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   font-weight: 800;
+   font-family: "Anton";
+}
+
+@media (min-width: 768px) {
+  .heading-container {
+    height: 150px;
+  }
+  .heading {
+    font-size: 100px;
+  }
+  .heading-left {
+    text-align: right;
+  }
+  .heading-right {
+    text-align: left
+  }
+  #header-text{
+    font-size: 100px;
+    line-height: 100px;
+  }
+  .third-heading-item.grow{
+    height: 120px;
+    opacity: 1;
+    transition: all .5s;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px){
+  .heading-container {
+    height: 105px;
+  }
+}
+
+@media (min-width: 576px) {
+  .text {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 768px){
+  .heading {
+    font-size: 70px;
+    width: 100%;
+    text-align: center;
+    line-height: 70px
+  }
+  #first-heading-1 {
+    top: 50%
+  }
+  .heading-container {
+    height: 140px;
+  }
+  .third-heading-item.grow{
+    height: 70px;
+    opacity: 1;
+    transition: all .5s;
+  }
+}
+
+.block-container {
+  height: 100vh;
+}
+
+.heading-container {
+  position: relative;
+  width: 100%;
+}
+
+.heading-left {
+  right: 120%
+}
+
+.heading-right {
+  left: 120%
+}
+
+
+.text {
+  text-align: center;
+  opacity: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.icon{
+  width: 32%;
+  display: none
+}
+
+#third-heading{
+  width: 100%
+}
+
+.third-heading-item{
+  height: 0px;
+  opacity: 0;
+  display: inline-block;
+  color: white;  /* Fallback: assume this color ON TOP of image */
+   background: url(./test2.jpeg) no-repeat center;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   font-weight: 800;
+   font-family: "Anton";
+}
+
+.icons {
+  height: 150px
+}
