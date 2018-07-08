@@ -248,19 +248,17 @@ $(document).on('touchmove', function (e){
 });
 
 function scrollUp(vph) {
-  $('html').animate({scrollTop: position - vph}, 1000, () => {
-
-  });
+  $('html, body').animate({scrollTop: position - vph}, 1000);
   setTimeout(() => {
     stopScroll("up", vph)
   }, 1300)
 }
 
 function scrollDown(vph) {
-  $('html').animate({scrollTop: position + vph}, 1000, () => {
-    animateBlocks()
-  });
+  $('html, body').animate({scrollTop: position + vph}, 1000);
+
   setTimeout(() => {
+    animateBlocks()
     stopScroll("down", vph)
   }, 1300)
 }
