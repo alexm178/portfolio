@@ -23,6 +23,7 @@ var state = {
     "second-text",
   ],
   watching: 0,
+  page: 1
 }
 
 function typeWriter() {
@@ -36,11 +37,11 @@ function typeWriter() {
 }
 
 function chevron() {
-  var $chevDown = $("#chev-down");
+  var $chevDown = $(".chev-down");
   var direction = "down";
   setInterval(() => {
     if (direction === "up") {
-      var px = "10px"
+      var px = "5px"
       direction = "down"
     } else {
       var px = "0px"
@@ -141,3 +142,8 @@ function animateLogoSection() {
     $(this).delay(1500 + 200*index).fadeIn(500);
   });
 }
+
+$(".chev-down").on("click", () => {
+  $('html, body').animate({scrollTop: state.pairs[0].offset().top * state.page}, 1000);
+  state.page++
+})

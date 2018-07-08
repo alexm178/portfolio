@@ -36,15 +36,16 @@
   font-size: 5vh;
 }
 
-#chev-down{
+.chev-down{
   color: white;
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   left: 0;
   text-align: center;
-  width: 100vw;
+  width: 100%;
   font-size: 4em;
   display: none;
+  line-height: 1px;
 }
 
 .heading{
@@ -75,6 +76,7 @@
   #third-heading{
     font-size: 500%;
     line-height: 100%;
+    padding-top: 10px;
   }
   #first-text {
     position: absolute;
@@ -96,7 +98,7 @@
 }
 
 .block-container{
-  height: 50vh;
+  height: 47vh;
   position: relative
 }
 
@@ -223,4 +225,9 @@
 #third-block {
   height: 100vh;
   margin-bottom: 20px;
+}
+
+.black {
+  color: #330066
+
 }
