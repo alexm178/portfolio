@@ -39,11 +39,12 @@ $window.on("load", () => {
   $("#header-text").fadeIn(1500, "linear", () => {
     typeWriter()
   })
-  sizeBlocks()
 })
 
 $window.on("resize", () => {
-  sizeBlocks()
+  for (var i = 0; i < $(".block").length; i++) {
+    sizeBlock(i)
+  }
 })
 
 
@@ -118,19 +119,17 @@ $window.on("resize", () => {
 //   state.page++
 // })
 
-function sizeBlocks() {
+function sizeBlock(i) {
 
   var vph = $window.innerHeight()
 
   var $blocks = $(".block")
 
-  $blocks.each(index => {
-    var $block = $($blocks[index]);
+    var $block = $($blocks[i]);
     var blockHeight = $block.outerHeight();
     $block.css({
       "padding-top": (vph - blockHeight) / 2 + "px"
     })
-  })
 
 }
 
@@ -157,12 +156,14 @@ $window.on("scroll", () => {
       animateText(page);
       break;
     case 2:
+      sizeBlock(page)
       animateIcons();
       break;
   }
 })
 
 function animateText(page) {
+  sizeBlock(page)
   if (!animations[page]) {
     var percent;
     if ($window.width() > 768) {
