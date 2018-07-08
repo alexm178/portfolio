@@ -227,7 +227,7 @@ $(window).on('mousewheel', function(event) {
 var ts;
 $(document).on('touchstart', function (e){
    ts = e.originalEvent.touches[0].clientY;
-   $("#log").text($("#log").text() + " touch")
+
 });
 
 
@@ -236,9 +236,11 @@ $(document).on('touchend', function (e){
 
    var te = e.originalEvent.changedTouches[0].clientY;
    if(ts > te+5){
+     $("#log").text($("#log").text() + " touch down")
       scrollDown(vph)
    }else if(ts < te-5){
       scrollUp(vph);
+      $("#log").text($("#log").text() + " touch up")
    }
 
 });
