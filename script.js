@@ -38,16 +38,19 @@ function chevron() {
 $window.on("load", () => {
   $("#header-text").fadeIn(1500, "linear", () => {
     typeWriter()
-  })
+  });
+  sizeBlocks()
 })
 
 $window.on("resize", () => {
+  sizeBlocks()
+})
+
+function sizeBlocks() {
   for (var i = 0; i < $(".block").length; i++) {
     sizeBlock(i)
   }
-})
-
-
+}
 
 
 // $(window).on("scroll", () => {
@@ -145,7 +148,7 @@ var animations = {
   2: false,
 }
 
-$window.on("scroll", () => {
+function animateBlocks() {
   var vph = $window.innerHeight()
   var page = Math.floor($window.scrollTop() / vph - 1)
   switch (page) {
@@ -156,14 +159,12 @@ $window.on("scroll", () => {
       animateText(page);
       break;
     case 2:
-      sizeBlock(page)
       animateIcons();
       break;
   }
-})
+}
 
 function animateText(page) {
-  sizeBlock(page)
   if (!animations[page]) {
     var percent;
     if ($window.width() > 768) {
@@ -210,7 +211,6 @@ function stopScroll(direction, vph) {
 }
 
 $(window).on('mousewheel', function(event) {
-  console.log("mousewheel")
   if (!scrolling) {
     scrolling = true
     var vph = $window.innerHeight()
@@ -222,48 +222,89 @@ $(window).on('mousewheel', function(event) {
     }
   }
   event.preventDefault()
+  event.stopPropagation()
 });
 
 var ts;
 $(document).on('touchstart', function (e){
    ts = e.originalEvent.touches[0].clientY;
-
 });
 
 
-$(document).on('touchend', function (e){
-  var vph = $window.innerHeight()
 
-   var te = e.originalEvent.changedTouches[0].clientY;
-   if(ts > te+5){
-     $("#log").text($("#log").text() + " touch down")
-      scrollDown(vph)
-   }else if(ts < te-5){
-      scrollUp(vph);
-      $("#log").text($("#log").text() + " touch up")
-   }
-
+$(document).on('touchmove', function (e){
+  if (!scrolling) {
+    scrolling = true
+    var vph = $window.innerHeight()
+     var te = e.originalEvent.changedTouches[0].clientY;
+     if(ts > te){
+       console.log("touch down")
+        scrollDown(vph)
+     }else if(ts < te){
+       console.log("touch up")
+        scrollUp(vph);
+     }
+  }
 });
 
 function scrollUp(vph) {
-  $("#log").text($("#log").text() + "scrolltop initial: " + $('html').scrollTop())
   $('html').animate({scrollTop: position - vph}, 1000, () => {
-    $("#log").text($("#log").text() + " animted up")
-    $("#log").text($("#log").text() + "scrolltop end: " + $('html').scrollTop())
-    setTimeout(() => {
-      stopScroll("up", vph)
-    }, 0)
+
   });
+  setTimeout(() => {
+    stopScroll("up", vph)
+  }, 1300)
 }
 
 function scrollDown(vph) {
   $('html').animate({scrollTop: position + vph}, 1000, () => {
-    $("#log").text($("#log").text() + " animted down")
-    setTimeout(() => {
-
-      stopScroll("down", vph)
-    }, 0)
+    animateBlocks()
   });
+  setTimeout(() => {
+    stopScroll("down", vph)
+  }, 1300)
 }
 
 console.log("derp")
+
+// var scrolling = false;
+// var position = 0
+//
+// $(window).scroll(function() {
+//   if (!scrolling) {
+//     console.log("scrolling")
+//     scrolling = true
+//     var vph = $window.innerHeight()
+//       if ($window.scrollTop() > position) {
+//         console.log("down")
+//           $('html').animate({scrollTop: position + vph}, 1000, () => {
+//             animateBlocks()
+//           });
+//           setTimeout(() => {
+//             position += vph
+//             scrolling = false;
+//           }, 1500)
+//       } else if ($window.scrollTop() < position){
+//         console.log("up")
+//         $('html').animate({scrollTop: position - vph}, 1000, () => {
+//           animateBlocks()
+//         });
+//         setTimeout(() => {
+//           position -= vph
+//           scrolling = false;
+//         }, 1500)
+//       }
+//   } else {
+//     $("html").scrollTop($window.scrollTop())
+//   }
+// });
+
+// $window.on("scroll", (event) => {
+//   console.log("scroll")
+//   $("html").scrollTop($window.scrollTop())
+// })
+//
+// $window.on("touchstart", function(event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+// });
