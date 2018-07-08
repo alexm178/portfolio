@@ -227,7 +227,7 @@ $(window).on('mousewheel', function(event) {
 var ts;
 $(document).on('touchstart', function (e){
    ts = e.originalEvent.touches[0].clientY;
-   console.log("touch")
+   $("#log").text($("#log").text() + " touch")
 });
 
 

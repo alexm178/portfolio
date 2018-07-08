@@ -163,6 +163,10 @@
   height: 150px
 }
 
+#log{
+  height: 100px;
+}
+
 /* .border-container{
   border: 3px solid #330066;
   border-radius: 10px;
