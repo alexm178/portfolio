@@ -200,6 +200,7 @@ function animateIcons() {
 var scrolling = false
 
 $(window).on('mousewheel', function(event) {
+  console.log("mousewheel")
   if (!scrolling) {
     scrolling = true
     var vph = $window.innerHeight()
@@ -222,3 +223,5 @@ $(window).on('mousewheel', function(event) {
   }
   event.preventDefault()
 });
+
+console.log("derp")
