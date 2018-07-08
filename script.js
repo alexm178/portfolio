@@ -223,3 +223,5 @@ $(window).bind('mousewheel', function(event) {
   }
   event.preventDefault()
 });
+
+console.log("jquery")
