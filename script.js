@@ -247,6 +247,7 @@ $(document).on('touchend', function (e){
 
 function scrollUp(vph) {
   $('html').animate({scrollTop: position - vph}, 1000, () => {
+    $("#log").text($("#log").text() + " animted up")
     setTimeout(() => {
       stopScroll("up", vph)
     }, 0)
@@ -255,7 +256,9 @@ function scrollUp(vph) {
 
 function scrollDown(vph) {
   $('html').animate({scrollTop: position + vph}, 1000, () => {
+    $("#log").text($("#log").text() + " animted down")
     setTimeout(() => {
+
       stopScroll("down", vph)
     }, 0)
   });
