@@ -197,31 +197,65 @@ function animateIcons() {
     });
 }
 
-var scrolling = false
+var scrolling = false;
+var position = 0
+
+function stopScroll(direction, vph) {
+  scrolling = false;
+  if (direction === "up") {
+    position -= vph
+  } else {
+    position += vph
+  }
+}
 
 $(window).on('mousewheel', function(event) {
   console.log("mousewheel")
   if (!scrolling) {
     scrolling = true
     var vph = $window.innerHeight()
-    var stopScroll = function() {
-      scrolling = false
-    }
+
     if (event.originalEvent.wheelDelta >= 0) {
-      $('html, body').animate({scrollTop: $window.scrollTop() - vph}, 1000, () => {
-        setTimeout(() => {
-          stopScroll()
-        }, 500)
-      });
+      scrollUp(vph)
     } else {
-      $('html, body').animate({scrollTop: $window.scrollTop() + vph}, 1000, () => {
-        setTimeout(() => {
-          stopScroll()
-        }, 500)
-      });
+      scrollDown(vph)
     }
   }
   event.preventDefault()
 });
+
+var ts;
+$(document).on('touchstart', function (e){
+   ts = e.originalEvent.touches[0].clientY;
+});
+
+
+$(document).on('touchend', function (e){
+  var vph = $window.innerHeight()
+
+   var te = e.originalEvent.changedTouches[0].clientY;
+   if(ts > te+5){
+      scrollDown(vph)
+   }else if(ts < te-5){
+      scrollUp(vph);
+   }
+
+});
+
+function scrollUp(vph) {
+  $('html').animate({scrollTop: position - vph}, 1000, () => {
+    setTimeout(() => {
+      stopScroll("up", vph)
+    }, 0)
+  });
+}
+
+function scrollDown(vph) {
+  $('html').animate({scrollTop: position + vph}, 1000, () => {
+    setTimeout(() => {
+      stopScroll("down", vph)
+    }, 0)
+  });
+}
 
 console.log("derp")
