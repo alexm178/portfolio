@@ -196,3 +196,29 @@ function animateIcons() {
       $(this).delay(1500 + 200*index).fadeIn(500);
     });
 }
+
+var scrolling = false
+
+$(window).bind('mousewheel', function(event) {
+  if (!scrolling) {
+    scrolling = true
+    var vph = $window.innerHeight()
+    var stopScroll = function() {
+      scrolling = false
+    }
+    if (event.originalEvent.wheelDelta >= 0) {
+      $('html, body').animate({scrollTop: $window.scrollTop() - vph}, 1000, () => {
+        setTimeout(() => {
+          stopScroll()
+        }, 500)
+      });
+    } else {
+      $('html, body').animate({scrollTop: $window.scrollTop() + vph}, 1000, () => {
+        setTimeout(() => {
+          stopScroll()
+        }, 500)
+      });
+    }
+  }
+  event.preventDefault()
+});
