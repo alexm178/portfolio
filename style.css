@@ -1,8 +1,9 @@
 .all{
   margin: 0;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
 }
+
 
 #header{
   height: 100vh;
@@ -21,8 +22,8 @@
  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
-
-
+ max-width: 100%;
+ width: 100vw;
 }
 
 #header-text{
@@ -71,24 +72,35 @@
     right: 100%;
     /* top: 75px; */
   }
+  #third-heading{
+    font-size: 500%;
+    line-height: 100%;
+  }
   #first-text {
     position: absolute;
     top: 140px;
-    left: 120%
+    left: 120%;
   }
   #second-text {
     position: absolute;
     top: 130px;
-    left: 120%
+    left: 120%;
   }
   #header-text{
     font-size: 70px;
     line-height: 70px
   }
+  .text{
+    font-size: .9em
+  }
+}
+
+.block-container{
+  height: 50vh;
+  position: relative
 }
 
 .block{
-  position: relative;
   height: 50vh;
 }
 
@@ -127,6 +139,10 @@
     line-height: 100%;
     text-align: right !important;
   }
+  #third-heading{
+    font-size: 600%;
+    line-height: 100%;
+  }
   #header-text{
     font-size: 100px;
     line-height: 100px;
@@ -137,6 +153,15 @@
 
   .pair{
     padding-top: 50px;
+  }
+
+  .icons{
+    padding-left: 0px !important;
+    padding-right: 0px !important
+  }
+
+  #third-block {
+    padding-top: 100px;
   }
 }
 
@@ -158,4 +183,43 @@
   .text{
     padding-top: 20px;
   }
+}
+
+.logo-container{
+  width: 33%;
+  display: inline;
+}
+
+.icons {
+}
+
+.icon{
+  width: 32%;
+  display: none
+}
+
+#third-heading{
+  width: 100%;
+}
+
+.third-heading-item{
+  height: 0px;
+  opacity: 0;
+  display: inline-block;
+  color: white;  /* Fallback: assume this color ON TOP of image */
+   background: url(./test2.jpeg) no-repeat center;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   font-weight: 800;
+   font-family: "Anton";
+}
+
+.third-heading-item.grow{
+  height: 100px;
+  opacity: 1;
+  transition: all .5s;
+}
+
+#third-block {
+  height: 100vh;
 }

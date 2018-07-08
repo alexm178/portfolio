@@ -7,10 +7,12 @@ var state = {
   sm: () => {return $(window).width() < "768"},
   blocks: [
     $("#first-block"),
-    $("#second-block")
+    $("#second-block"),
+    $('#third-block')
   ],
   pairs: [
     $("#first-pair"),
+    $("#third-block")
   ],
   headings: [
     "first-heading",
@@ -77,17 +79,17 @@ $(window).on("resize", () => {
 })
 
 $(window).on("scroll", () => {
-  if (state.sm()) {
-    if (isInViewport($(state.blocks[state.watching]))) {
-      if ($(document.getElementById(state.headings[state.watching])).css("right") !== "0px") {
-        animateBlocksSmall()
+    if (state.sm()) {
+      if (isInViewport($(state.blocks[state.watching]))) {
+        if ($(document.getElementById(state.headings[state.watching])).css("right") !== "0px") {
+          animateBlocksSmall()
+        }
+      }
+    } else {
+      if (isInViewport($(state.pairs[state.watching]))) {
+        animateBlocksLarge();
       }
     }
-  } else {
-    if (isInViewport($(state.pairs[state.watching]))) {
-      animateBlocksLarge();
-    }
-  }
 })
 
 function isInViewport(element){
@@ -95,26 +97,47 @@ function isInViewport(element){
   var elementBottom = elementTop + element.outerHeight();
   var viewportTop = $(window).scrollTop();
   var viewportBottom = viewportTop + $(window).height();
-  return elementBottom < viewportBottom + 20;
+  return elementBottom < viewportBottom + 50;
 };
 
 function animateBlocksSmall() {
-  $(document.getElementById(state.headings[state.watching])).animate({
-    right: "0px"
-  })
-  $(document.getElementById(state.text[state.watching])).animate({
-    left: "0px"
-  })
-  if (state.watching < state.blocks.length -1) {
-    state.watching++
+  if (state.watching === 2) {
+    animateLogoSection()
+  } else {
+    $(document.getElementById(state.headings[state.watching])).animate({
+      right: "0px"
+    })
+    $(document.getElementById(state.text[state.watching])).animate({
+      left: "0px"
+    })
+    if (state.watching < state.blocks.length -1) {
+      state.watching++
+    }
   }
 }
 
 function animateBlocksLarge() {
-  state.blocks[state.watching].animate({
-    right: "0px"
-  })
-  state.blocks[state.watching + 1].animate({
-    left: "0px"
-  })
+  if (state.watching === 1) {
+    animateLogoSection()
+  } else {
+    state.blocks[state.watching].animate({
+      right: "0px"
+    })
+    state.blocks[state.watching + 1].animate({
+      left: "0px"
+    })
+    state.watching++
+  }
+}
+
+function animateLogoSection() {
+  $('.third-heading-item').each(function(i) {
+    var item = $(this);
+    setTimeout(function() {
+      item.addClass('grow');
+    }, i*500); // delay 100 ms
+  });
+  $(".icon").each(function(index) {
+    $(this).delay(1500 + 200*index).fadeIn(500);
+  });
 }
