@@ -153,6 +153,7 @@ function animateBlocks() {
   var page = Math.floor($window.scrollTop() / vph - 1)
   switch (page) {
     case 0:
+      sizeBlock(page)
       animateText(page);
       break;
     case 1:
