@@ -191,7 +191,7 @@ function scrollUp(page) {
   $('html, body').animate({scrollTop: offset}, 1000);
   setTimeout(() => {
     stopScroll()
-  }, 1300)
+  }, 1500)
 }
 
 function scrollDown(page) {
@@ -202,5 +202,5 @@ function scrollDown(page) {
   }, 500)
   setTimeout(() => {
     stopScroll()
-  }, 1300)
+  }, 1500)
 }
