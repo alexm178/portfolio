@@ -10,7 +10,7 @@ var state = {
   pageTops: [0, 0, 0, 0],
   calibratePageTops: () => {
     state.pageTops = state.pageTops.map((top, i) => {
-      return $window.innerHeight() * -i
+      return $window.height() * -i
     })
   }
 }
@@ -74,7 +74,7 @@ function sizeBlocks() {
 // })
 
 function sizeBlock(i) {
-  var vph = $window.innerHeight()
+  var vph = $window.height()
   var $block = $($(".block").get(i))
   $($(".heading-container").get(i)).css({
     "margin-top": (vph - $block.height()) / 2 + "px"
