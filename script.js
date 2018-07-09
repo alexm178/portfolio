@@ -66,8 +66,8 @@ function sizeBlocks() {
 function sizeBlock(i) {
   var vph = $window.innerHeight()
   var $block = $($(".block").get(i))
-  $block.css({
-    "padding-top": (vph - $block.height()) / 2 + "px"
+  $($(".heading-container").get(i)).css({
+    "margin-top": (vph - $block.height()) / 2 + "px"
   })
 }
 
@@ -160,39 +160,78 @@ $(window).on('mousewheel', function(event) {
   event.stopPropagation()
 });
 
-var ts;
-$(document).on('touchstart', function (e){
-   ts = e.originalEvent.touches[0].clientY;
-});
+// var ts;
+// $(document).on('touchstart', function (e){
+//    ts = e.originalEvent.touches[0].clientY;
+// });
+//
+// $window.scroll(() => {
+//   sizeBlock(state.page)
+// })
+//
+//
+//
+// $(document).on('touchend', function (e){
+//   if (!scrolling) {
+//     scrolling = true
+//     var vph = $window.innerHeight()
+//      var te = e.originalEvent.changedTouches[0].clientY;
+//      if(ts > te){
+//         scrollDown(state.page)
+//         if (state.page !== 2) {
+//           state.page++
+//         }
+//      }else if(ts < te){
+//         scrollUp(state.page);
+//         if (state.page !== 0) {
+//           state.page--
+//         }
+//      }
+//   }
+// });
 
-$window.scroll(() => {
-  sizeBlock(state.page)
-})
-
-
-
-$(document).on('touchend', function (e){
+$window.on("swipeup", () => {
   if (!scrolling) {
     scrolling = true
-    var vph = $window.innerHeight()
-     var te = e.originalEvent.changedTouches[0].clientY;
-     if(ts > te){
-        scrollDown(state.page)
-        if (state.page !== 2) {
-          state.page++
-        }
-     }else if(ts < te){
-        scrollUp(state.page);
-        if (state.page !== 0) {
-          state.page--
-        }
-     }
+    scrollDown(state.page)
+    if (state.page !== 2) {
+      state.page++
+    }
   }
-});
+})
+
+$window.on("swipedown", () => {
+  if (!scrolling) {
+    scrolling = true
+    scrollUp(state.page);
+    if (state.page !== 0) {
+      state.page--
+    }
+  }
+})
+
+// document.ontouchmove = function(e){ e.preventDefault(); }
+
+// document.addEventListener('touchstart', (event) => {
+//   return false
+//   event.preventDefault()
+//   event.stopPropagation()
+// }, {passive: false});
+// document.addEventListener('touchmove', (event) => {
+//   return false
+//   event.preventDefault()
+//   event.stopPropagation()
+// }, {passive: false});
+// document.addEventListener('touchend', (event) => {
+//   return false
+//   event.preventDefault()
+//   event.stopPropagation()
+// }, {passive: false});
+
+
 
 function scrollUp(page) {
-  var header = (page === 0);
-  if (header) {
+  if (page === 0) {
     var offset = 0
   } else {
     var offset = $($(".block").get(page - 1)).offset().top
