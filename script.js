@@ -165,6 +165,12 @@ $(document).on('touchstart', function (e){
    ts = e.originalEvent.touches[0].clientY;
 });
 
+$window.scroll(() => {
+  if (!scrolling) {
+    $("html body").scrollTop($window.scrollTop())
+  }
+})
+
 
 
 $(document).on('touchmove touchend', function (e){
@@ -183,8 +189,6 @@ $(document).on('touchmove touchend', function (e){
           state.page--
         }
      }
-  } else {
-    $('html body').scrollTop($window.scrollTop())
   }
 });
 
