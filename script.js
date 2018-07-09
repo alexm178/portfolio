@@ -177,3 +177,5 @@ $(".chev-down").on("click", () => {
   state.page++;
   scrollToPage(state.page)
 })
+
+console.log("hello iphone")
