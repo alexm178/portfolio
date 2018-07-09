@@ -192,43 +192,43 @@ $(window).on('mousewheel', function(event) {
 
 $window.on("swipeup", () => {
   console.log("swipeup")
-  if (!scrolling) {
-    scrolling = true
-    scrollDown(state.page)
-    if (state.page !== 2) {
-      state.page++
-    }
-  }
+  // if (!scrolling) {
+  //   scrolling = true
+  //   scrollDown(state.page)
+  //   if (state.page !== 2) {
+  //     state.page++
+  //   }
+  // }
 })
 
 $window.on("swipedown", () => {
   console.log("swipedown")
-  if (!scrolling) {
-    scrolling = true
-    scrollUp(state.page);
-    if (state.page !== 0) {
-      state.page--
-    }
-  }
+  // if (!scrolling) {
+  //   scrolling = true
+  //   scrollUp(state.page);
+  //   if (state.page !== 0) {
+  //     state.page--
+  //   }
+  // }
 })
 
-document.ontouchmove = function(e){ e.preventDefault(); }
-
-document.addEventListener('touchstart', (event) => {
-  return false
-  event.preventDefault()
-  event.stopPropagation()
-}, {passive: false});
-document.addEventListener('touchmove', (event) => {
-  return false
-  event.preventDefault()
-  event.stopPropagation()
-}, {passive: false});
-document.addEventListener('touchend', (event) => {
-  return false
-  event.preventDefault()
-  event.stopPropagation()
-}, {passive: false});
+// document.ontouchmove = function(e){ e.preventDefault(); }
+//
+// document.addEventListener('touchstart', (event) => {
+//   return false
+//   event.preventDefault()
+//   event.stopPropagation()
+// }, {passive: false});
+// document.addEventListener('touchmove', (event) => {
+//   return false
+//   event.preventDefault()
+//   event.stopPropagation()
+// }, {passive: false});
+// document.addEventListener('touchend', (event) => {
+//   return false
+//   event.preventDefault()
+//   event.stopPropagation()
+// }, {passive: false});
 
 
 
