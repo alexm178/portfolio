@@ -191,6 +191,7 @@ $(window).on('mousewheel', function(event) {
 // });
 
 $window.on("swipeup", () => {
+  console.log("swipeup")
   if (!scrolling) {
     scrolling = true
     scrollDown(state.page)
@@ -201,6 +202,7 @@ $window.on("swipeup", () => {
 })
 
 $window.on("swipedown", () => {
+  console.log("swipedown")
   if (!scrolling) {
     scrolling = true
     scrollUp(state.page);
