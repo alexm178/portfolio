@@ -2,8 +2,11 @@
   margin: 0;
   width: 100vw;
   overflow-x: hidden;
-  touch-action: none;
 
+}
+
+*{
+  touch-action: none;
 }
 
 

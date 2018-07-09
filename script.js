@@ -210,23 +210,23 @@ $window.on("swipedown", () => {
   }
 })
 
-// document.ontouchmove = function(e){ e.preventDefault(); }
+document.ontouchmove = function(e){ e.preventDefault(); }
 
-// document.addEventListener('touchstart', (event) => {
-//   return false
-//   event.preventDefault()
-//   event.stopPropagation()
-// }, {passive: false});
-// document.addEventListener('touchmove', (event) => {
-//   return false
-//   event.preventDefault()
-//   event.stopPropagation()
-// }, {passive: false});
-// document.addEventListener('touchend', (event) => {
-//   return false
-//   event.preventDefault()
-//   event.stopPropagation()
-// }, {passive: false});
+document.addEventListener('touchstart', (event) => {
+  return false
+  event.preventDefault()
+  event.stopPropagation()
+}, {passive: false});
+document.addEventListener('touchmove', (event) => {
+  return false
+  event.preventDefault()
+  event.stopPropagation()
+}, {passive: false});
+document.addEventListener('touchend', (event) => {
+  return false
+  event.preventDefault()
+  event.stopPropagation()
+}, {passive: false});
 
 
 
