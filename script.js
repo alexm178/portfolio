@@ -67,11 +67,8 @@ function sizeBlocks() {
   }
 }
 
-//
-// $(".chev-down").on("click", () => {
-//   $('html, body').animate({scrollTop: state.pairs[0].offset().top * state.page}, 1000);
-//   state.page++
-// })
+
+
 
 function sizeBlock(i) {
   var vph = $window.innerHeight()
@@ -92,7 +89,7 @@ var texts = $(".text")
 function animateBlocks() {
   if (state.page < 3 && !state.pageAnimations[state.page]) {
     animateText(state.page)
-  } else {
+  } else if (!state.pageAnimations[state.page]){
     animateIcons()
   }
 }
@@ -132,61 +129,23 @@ function animateIcons() {
 }
 
 var scrolling = false;
-// var page = 0
 
-function stopScroll(direction) {
-  scrolling = false;
-}
 
-$(window).on('mousewheel', function(event) {
+window.addEventListener('wheel', function(event) {
   if (!scrolling) {
     scrolling = true
-
-    if (event.originalEvent.wheelDelta >= 0) {
-      if (state.page > 0) {
-        state.page--
-      }
-      scrollToPage(state.page)
-    } else {
-      if (state.page < 3) {
-        state.page++
-      }
-      scrollToPage(state.page)
+    if (event.deltaY < 0 && state.page > 0) {
+      state.page--
+    } else if (event.deltaY > 0) {
+      state.page++
     }
+    scrollToPage(state.page)
   }
   event.preventDefault()
   event.stopPropagation()
 });
 
-
-function scrollUp() {
-  if (page === 1) {
-    var top = 0
-  } else {
-    var top = state.pageTops[page - 2]
-  }
-  console.log(state.pageTops, page - 1)
-  if (page !== 0) {
-    $all.animate({top: top}, 1000);
-    setTimeout(() => {
-      stopScroll()
-    }, 2000)
-  }
-}
-
-function scrollDown() {
-  console.log(state.pageTops, page)
-  $all.animate({top: state.pageTops[page]}, 1000);
-  setTimeout(() => {
-    animateBlocks(page)
-  }, 500)
-  setTimeout(() => {
-    stopScroll()
-  }, 2000)
-}
-
 function scrollToPage(page) {
-  console.log(page, state.pageTops[page])
   $all.animate({top: state.pageTops[page]}, 1000);
   setTimeout(() => {
     animateBlocks(page)
@@ -212,4 +171,9 @@ $window.on("swipedown", () => {
     }
     scrollToPage(state.page)
   }
+})
+
+$(".chev-down").on("click", () => {
+  state.page++;
+  scrollToPage(state.page)
 })
