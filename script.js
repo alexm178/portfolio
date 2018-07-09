@@ -193,7 +193,13 @@ $(document).on('touchend', function (e){
 });
 
 function scrollUp(page) {
-  var offset = $window.scrollTop() - $window.outerHeight()
+  var header = (page === 0);
+  if (header) {
+    var offset = 0
+  } else {
+    var offset = $($(".block").get(page - 1)).offset().top
+  }
+
   $('html, body').animate({scrollTop: offset}, 1000);
   setTimeout(() => {
     stopScroll()
