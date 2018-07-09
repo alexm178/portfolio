@@ -1,7 +1,11 @@
-var i = 0;
+var i = 0
 var txt = 'By Alexander Anthony'; /* The text */
 var speed = 50; /* The speed/duration of the effect in milliseconds */
 var $window = $(window)
+
+var state = {
+  page: 0
+}
 
 
 function typeWriter() {
@@ -43,79 +47,16 @@ $window.on("load", () => {
 })
 
 $window.on("resize", () => {
+  console.log("resize")
   sizeBlocks()
 })
 
 function sizeBlocks() {
-  for (var i = 0; i < $(".block").length; i++) {
+  for (var i = 0; i < 3; i++) {
     sizeBlock(i)
   }
 }
 
-
-// $(window).on("scroll", () => {
-//     if (state.sm()) {
-//       if (isInViewport($(state.blocks[state.watching]))) {
-//         if ($(document.getElementById(state.headings[state.watching])).css("right") !== "0px") {
-//           animateBlocksSmall()
-//         }
-//       }
-//     } else {
-//       if (isInViewport($(state.pairs[state.watching]))) {
-//         animateBlocksLarge();
-//       }
-//     }
-// })
-
-// function isInViewport(element){
-//   var elementTop = element.offset().top;
-//   var elementBottom = elementTop + element.outerHeight();
-//   var viewportTop = $(window).scrollTop();
-//   var viewportBottom = viewportTop + $(window).height();
-//   return elementBottom < viewportBottom + 50;
-// };
-//
-// function animateBlocksSmall() {
-//   if (state.watching === 2) {
-//     animateLogoSection()
-//   } else {
-//     $(document.getElementById(state.headings[state.watching])).animate({
-//       right: "0px"
-//     })
-//     $(document.getElementById(state.text[state.watching])).animate({
-//       left: "0px"
-//     })
-//     if (state.watching < state.blocks.length -1) {
-//       state.watching++
-//     }
-//   }
-// }
-//
-// function animateBlocksLarge() {
-//   if (state.watching === 1) {
-//     animateLogoSection()
-//   } else {
-//     state.blocks[state.watching].animate({
-//       right: "0px"
-//     })
-//     state.blocks[state.watching + 1].animate({
-//       left: "0px"
-//     })
-//     state.watching++
-//   }
-// }
-//
-// function animateLogoSection() {
-//   $('.third-heading-item').each(function(i) {
-//     var item = $(this);
-//     setTimeout(function() {
-//       item.addClass('grow');
-//     }, i*500); // delay 100 ms
-//   });
-//   $(".icon").each(function(index) {
-//     $(this).delay(1500 + 200*index).fadeIn(500);
-//   });
-// }
 //
 // $(".chev-down").on("click", () => {
 //   $('html, body').animate({scrollTop: state.pairs[0].offset().top * state.page}, 1000);
@@ -123,17 +64,11 @@ function sizeBlocks() {
 // })
 
 function sizeBlock(i) {
-
   var vph = $window.innerHeight()
-
-  var $blocks = $(".block")
-
-    var $block = $($blocks[i]);
-    var blockHeight = $block.outerHeight();
-    $block.css({
-      "padding-top": (vph - blockHeight) / 2 + "px"
-    })
-
+  var $block = $($(".block").get(i))
+  $block.css({
+    "padding-top": (vph - $block.height()) / 2 + "px"
+  })
 }
 
 
@@ -148,9 +83,7 @@ var animations = {
   2: false,
 }
 
-function animateBlocks() {
-  var vph = $window.innerHeight()
-  var page = Math.floor($window.scrollTop() / vph - 1)
+function animateBlocks(page) {
   switch (page) {
     case 0:
       sizeBlock(page)
@@ -185,6 +118,7 @@ function animateText(page) {
       })
     })
   }
+  animations.page = true
 }
 
 function animateIcons() {
@@ -200,26 +134,26 @@ function animateIcons() {
 }
 
 var scrolling = false;
-var position = 0
+// var page = 0
 
-function stopScroll(direction, vph) {
+function stopScroll(direction) {
   scrolling = false;
-  if (direction === "up") {
-    position -= vph
-  } else {
-    position += vph
-  }
 }
 
 $(window).on('mousewheel', function(event) {
   if (!scrolling) {
     scrolling = true
-    var vph = $window.innerHeight()
 
     if (event.originalEvent.wheelDelta >= 0) {
-      scrollUp(vph)
+      scrollUp(state.page)
+      if (state.page !== 0) {
+        state.page--
+      }
     } else {
-      scrollDown(vph)
+      scrollDown(state.page)
+      if (state.page !== 2) {
+        state.page++
+      }
     }
   }
   event.preventDefault()
@@ -239,71 +173,34 @@ $(document).on('touchmove', function (e){
     var vph = $window.innerHeight()
      var te = e.originalEvent.changedTouches[0].clientY;
      if(ts > te){
-       console.log("touch down")
-        scrollDown(vph)
+        scrollDown(state.page)
+        if (state.page !== 2) {
+          state.page++
+        }
      }else if(ts < te){
-       console.log("touch up")
-        scrollUp(vph);
+        scrollUp(state.page);
+        if (state.page !== 0) {
+          state.page--
+        }
      }
   }
 });
 
-function scrollUp(vph) {
-  $('html, body').animate({scrollTop: position - vph}, 1000);
+function scrollUp(page) {
+  var offset = $window.scrollTop() - $window.outerHeight()
+  $('html, body').animate({scrollTop: offset}, 1000);
   setTimeout(() => {
-    stopScroll("up", vph)
+    stopScroll()
   }, 1300)
 }
 
-function scrollDown(vph) {
-  $('html, body').animate({scrollTop: position + vph}, 1000);
-
+function scrollDown(page) {
+  var offset = $($(".block").get(page)).offset().top
+  $('html, body').animate({scrollTop: offset}, 1000);
   setTimeout(() => {
-    animateBlocks()
-    stopScroll("down", vph)
+    animateBlocks(page)
+  }, 500)
+  setTimeout(() => {
+    stopScroll()
   }, 1300)
 }
-
-console.log("derp")
-
-// var scrolling = false;
-// var position = 0
-//
-// $(window).scroll(function() {
-//   if (!scrolling) {
-//     console.log("scrolling")
-//     scrolling = true
-//     var vph = $window.innerHeight()
-//       if ($window.scrollTop() > position) {
-//         console.log("down")
-//           $('html').animate({scrollTop: position + vph}, 1000, () => {
-//             animateBlocks()
-//           });
-//           setTimeout(() => {
-//             position += vph
-//             scrolling = false;
-//           }, 1500)
-//       } else if ($window.scrollTop() < position){
-//         console.log("up")
-//         $('html').animate({scrollTop: position - vph}, 1000, () => {
-//           animateBlocks()
-//         });
-//         setTimeout(() => {
-//           position -= vph
-//           scrolling = false;
-//         }, 1500)
-//       }
-//   } else {
-//     $("html").scrollTop($window.scrollTop())
-//   }
-// });
-
-// $window.on("scroll", (event) => {
-//   console.log("scroll")
-//   $("html").scrollTop($window.scrollTop())
-// })
-//
-// $window.on("touchstart", function(event) {
-//     event.preventDefault();
-//     event.stopPropagation();
-// });
