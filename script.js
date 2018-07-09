@@ -167,7 +167,7 @@ $(document).on('touchstart', function (e){
 
 $window.scroll(() => {
   if (!scrolling) {
-    $("html body").scrollTop($window.scrollTop())
+    $("html body").scrollTop($($(".block").get(state.page)).offset().top)
   }
 })
 
