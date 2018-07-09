@@ -165,15 +165,15 @@ $(document).on('touchstart', function (e){
    ts = e.originalEvent.touches[0].clientY;
 });
 
-$window.scroll(() => {
-  if (!scrolling) {
-    $("html body").scrollTop($($(".block").get(state.page)).offset().top)
-  }
-})
+// $window.scroll(() => {
+//   if (!scrolling) {
+//     $("html body").scrollTop($($(".block").get(state.page)).offset().top)
+//   }
+// })
 
 
 
-$(document).on('touchmove', function (e){
+$(document).on('touchend', function (e){
   if (!scrolling) {
     scrolling = true
     var vph = $window.innerHeight()
