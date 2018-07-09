@@ -10,7 +10,7 @@ var state = {
   pageTops: [0, 0, 0, 0],
   calibratePageTops: () => {
     state.pageTops = state.pageTops.map((top, i) => {
-      return $window.innerHeight() * -i
+      return $(".block-container").outerHeight() * -i
     })
   }
 }
