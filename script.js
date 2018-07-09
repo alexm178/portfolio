@@ -2,9 +2,17 @@ var i = 0
 var txt = 'By Alexander Anthony'; /* The text */
 var speed = 50; /* The speed/duration of the effect in milliseconds */
 var $window = $(window)
+var $all = $(".all")
 
 var state = {
-  page: 0
+  page: 0,
+  pageAnimations: [true, false, false, false],
+  pageTops: [0, 0, 0, 0],
+  calibratePageTops: () => {
+    state.pageTops = state.pageTops.map((top, i) => {
+      return $window.innerHeight() * -i
+    })
+  }
 }
 
 
@@ -44,11 +52,13 @@ $window.on("load", () => {
     typeWriter()
   });
   sizeBlocks()
+  state.calibratePageTops()
 })
 
 $window.on("resize", () => {
   console.log("resize")
   sizeBlocks()
+  state.calibratePageTops()
 })
 
 function sizeBlocks() {
@@ -74,51 +84,39 @@ function sizeBlock(i) {
 
 
 
-var headings = $(".heading");
+var headingsLeft = $(".heading-left");
+var headingsRight = $(".heading-right")
 var texts = $(".text")
 
-var animations = {
-  0: false,
-  1: false,
-  2: false,
-}
 
-function animateBlocks(page) {
-  switch (page) {
-    case 0:
-      sizeBlock(page)
-      animateText(page);
-      break;
-    case 1:
-      animateText(page);
-      break;
-    case 2:
-      animateIcons();
-      break;
+function animateBlocks() {
+  if (state.page < 3 && !state.pageAnimations[state.page]) {
+    animateText(state.page)
+  } else {
+    animateIcons()
   }
 }
 
 function animateText(page) {
-  if (!animations[page]) {
     var percent;
     if ($window.width() > 768) {
       percent = "50%"
     } else {
       percent = "0%"
     }
-    $(headings[page * 2]).animate({
+    $(headingsLeft[page - 1]).animate({
       right: percent
     }, 200, () => {
-      $(headings[page * 2 + 1]).animate({
+      $(headingsRight[page - 1]).animate({
         left: percent
       }, () => {
-        $(texts[page]).animate({
+        $(texts[page - 1]).animate({
           opacity: 1
-        }, 1000)
+        }, 1000, () => {
+          state.pageAnimations[page] = true
+        })
       })
     })
-  }
-  animations.page = true
 }
 
 function animateIcons() {
@@ -141,20 +139,19 @@ function stopScroll(direction) {
 }
 
 $(window).on('mousewheel', function(event) {
-  console.log("wheel")
   if (!scrolling) {
     scrolling = true
 
     if (event.originalEvent.wheelDelta >= 0) {
-      scrollUp(state.page)
-      if (state.page !== 0) {
+      if (state.page > 0) {
         state.page--
       }
+      scrollToPage(state.page)
     } else {
-      scrollDown(state.page)
-      if (state.page !== 2) {
+      if (state.page < 3) {
         state.page++
       }
+      scrollToPage(state.page)
     }
   }
   event.preventDefault()
@@ -162,49 +159,57 @@ $(window).on('mousewheel', function(event) {
 });
 
 
-function scrollUp(page) {
-  console.log("up")
+function scrollUp() {
+  if (page === 1) {
+    var top = 0
+  } else {
+    var top = state.pageTops[page - 2]
+  }
+  console.log(state.pageTops, page - 1)
   if (page !== 0) {
-    var $all = $(".all")
-    var vph = $window.innerHeight()
-    var top = $all.offset().top + vph;
-    console.log(top)
     $all.animate({top: top}, 1000);
     setTimeout(() => {
       stopScroll()
-    }, 1600)
+    }, 2000)
   }
 }
 
-function scrollDown(page) {
-  console.log("down")
-  var $all = $(".all")
-  var vph = $window.innerHeight()
-  var top = $all.offset().top - vph;
-  console.log(top)
-  $all.animate({top: top}, 1000);
+function scrollDown() {
+  console.log(state.pageTops, page)
+  $all.animate({top: state.pageTops[page]}, 1000);
   setTimeout(() => {
     animateBlocks(page)
   }, 500)
   setTimeout(() => {
     stopScroll()
-  }, 1600)
+  }, 2000)
+}
+
+function scrollToPage(page) {
+  console.log(page, state.pageTops[page])
+  $all.animate({top: state.pageTops[page]}, 1000);
+  setTimeout(() => {
+    animateBlocks(page)
+  }, 500)
+  setTimeout(() => {
+    scrolling = false
+  }, 2000)
 }
 
 $window.on("swipeup", () => {
   if (!scrolling) {
-    scrollDown(state.page)
-    if (state.page !== 2) {
+    if (state.page < 3) {
       state.page++
     }
+    scrollToPage(state.page)
   }
 })
 
-$window.on("swipwdown", () => {
+$window.on("swipedown", () => {
   if (!scrolling) {
-    scrollUp(state.page)
-    if (state.page !== 0) {
+    if (state.page > 0) {
       state.page--
     }
+    scrollToPage(state.page)
   }
 })
