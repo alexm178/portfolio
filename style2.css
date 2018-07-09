@@ -1,8 +1,15 @@
 .all{
   margin: 0;
   width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: absolute;
+}
 
+body{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: hidden;
 }
 
 *{

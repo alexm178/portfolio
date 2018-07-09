@@ -141,6 +141,7 @@ function stopScroll(direction) {
 }
 
 $(window).on('mousewheel', function(event) {
+  console.log("wheel")
   if (!scrolling) {
     scrolling = true
 
@@ -160,98 +161,50 @@ $(window).on('mousewheel', function(event) {
   event.stopPropagation()
 });
 
-// var ts;
-// $(document).on('touchstart', function (e){
-//    ts = e.originalEvent.touches[0].clientY;
-// });
-//
-// $window.scroll(() => {
-//   sizeBlock(state.page)
-// })
-//
-//
-//
-// $(document).on('touchend', function (e){
-//   if (!scrolling) {
-//     scrolling = true
-//     var vph = $window.innerHeight()
-//      var te = e.originalEvent.changedTouches[0].clientY;
-//      if(ts > te){
-//         scrollDown(state.page)
-//         if (state.page !== 2) {
-//           state.page++
-//         }
-//      }else if(ts < te){
-//         scrollUp(state.page);
-//         if (state.page !== 0) {
-//           state.page--
-//         }
-//      }
-//   }
-// });
-
-$window.on("swipeup", () => {
-  console.log("swipeup")
-  // if (!scrolling) {
-  //   scrolling = true
-  //   scrollDown(state.page)
-  //   if (state.page !== 2) {
-  //     state.page++
-  //   }
-  // }
-})
-
-$window.on("swipedown", () => {
-  console.log("swipedown")
-  // if (!scrolling) {
-  //   scrolling = true
-  //   scrollUp(state.page);
-  //   if (state.page !== 0) {
-  //     state.page--
-  //   }
-  // }
-})
-
-// document.ontouchmove = function(e){ e.preventDefault(); }
-//
-// document.addEventListener('touchstart', (event) => {
-//   return false
-//   event.preventDefault()
-//   event.stopPropagation()
-// }, {passive: false});
-// document.addEventListener('touchmove', (event) => {
-//   return false
-//   event.preventDefault()
-//   event.stopPropagation()
-// }, {passive: false});
-// document.addEventListener('touchend', (event) => {
-//   return false
-//   event.preventDefault()
-//   event.stopPropagation()
-// }, {passive: false});
-
-
 
 function scrollUp(page) {
-  if (page === 0) {
-    var offset = 0
-  } else {
-    var offset = $($(".block").get(page - 1)).offset().top
+  console.log("up")
+  if (page !== 0) {
+    var $all = $(".all")
+    var vph = $window.innerHeight()
+    var top = $all.offset().top + vph;
+    console.log(top)
+    $all.animate({top: top}, 1000);
+    setTimeout(() => {
+      stopScroll()
+    }, 1600)
   }
-
-  $('html, body').animate({scrollTop: offset}, 1000);
-  setTimeout(() => {
-    stopScroll()
-  }, 1000)
 }
 
 function scrollDown(page) {
-  var offset = $($(".block").get(page)).offset().top
-  $('html, body').animate({scrollTop: offset}, 1000);
+  console.log("down")
+  var $all = $(".all")
+  var vph = $window.innerHeight()
+  var top = $all.offset().top - vph;
+  console.log(top)
+  $all.animate({top: top}, 1000);
   setTimeout(() => {
     animateBlocks(page)
   }, 500)
   setTimeout(() => {
     stopScroll()
-  }, 1000)
+  }, 1600)
 }
+
+$window.on("swipeup", () => {
+  if (!scrolling) {
+    scrollDown(state.page)
+    if (state.page !== 2) {
+      state.page++
+    }
+  }
+})
+
+$window.on("swipwdown", () => {
+  if (!scrolling) {
+    scrollUp(state.page)
+    if (state.page !== 0) {
+      state.page--
+    }
+  }
+})
