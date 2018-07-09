@@ -10,7 +10,7 @@ var state = {
   pageTops: [0, 0, 0, 0],
   calibratePageTops: () => {
     state.pageTops = state.pageTops.map((top, i) => {
-      return $window.height() * -i
+      return $window.innerHeight() * -i
     })
   }
 }
@@ -48,11 +48,11 @@ function chevron() {
 
 
 $window.on("load", () => {
+  sizeBlocks()
+  state.calibratePageTops()
   $("#header-text").fadeIn(1500, "linear", () => {
     typeWriter()
   });
-  sizeBlocks()
-  state.calibratePageTops()
 })
 
 $window.on("resize", () => {
@@ -74,7 +74,7 @@ function sizeBlocks() {
 // })
 
 function sizeBlock(i) {
-  var vph = $window.height()
+  var vph = $window.innerHeight()
   var $block = $($(".block").get(i))
   $($(".heading-container").get(i)).css({
     "margin-top": (vph - $block.height()) / 2 + "px"
