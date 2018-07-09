@@ -183,6 +183,8 @@ $(document).on('touchmove touchend', function (e){
           state.page--
         }
      }
+  } else {
+    $('html body').scrollTop($window.scrollTop())
   }
 });
 
@@ -191,7 +193,7 @@ function scrollUp(page) {
   $('html, body').animate({scrollTop: offset}, 1000);
   setTimeout(() => {
     stopScroll()
-  }, 1500)
+  }, 1000)
 }
 
 function scrollDown(page) {
@@ -202,5 +204,5 @@ function scrollDown(page) {
   }, 500)
   setTimeout(() => {
     stopScroll()
-  }, 1500)
+  }, 1000)
 }
