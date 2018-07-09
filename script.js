@@ -165,11 +165,9 @@ $(document).on('touchstart', function (e){
    ts = e.originalEvent.touches[0].clientY;
 });
 
-// $window.scroll(() => {
-//   if (!scrolling) {
-//     $("html body").scrollTop($($(".block").get(state.page)).offset().top)
-//   }
-// })
+$window.scroll(() => {
+  sizeBlock(state.page)
+})
 
 
 
