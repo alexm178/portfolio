@@ -167,7 +167,7 @@ $(document).on('touchstart', function (e){
 
 
 
-$(document).on('touchmove', function (e){
+$(document).on('touchmove touchend', function (e){
   if (!scrolling) {
     scrolling = true
     var vph = $window.innerHeight()
