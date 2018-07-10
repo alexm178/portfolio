@@ -3,6 +3,9 @@ var txt = 'By Alexander Anthony'; /* The text */
 var speed = 50; /* The speed/duration of the effect in milliseconds */
 var $window = $(window)
 var $all = $(".all")
+var $chevDown = $(".chev-down");
+var direction = 1;
+
 
 var state = {
   page: 0,
@@ -27,22 +30,22 @@ function typeWriter() {
 }
 
 function chevron() {
-  var $chevDown = $(".chev-down");
-  var direction = "down";
-  setInterval(() => {
-    if (direction === "up") {
-      var px = "5px"
-      direction = "down"
-    } else {
-      var px = "0px"
-      direction = "up"
-    }
-    $chevDown.animate({
-      bottom: px
-    }, 500)
-  }, 500)
   $chevDown.fadeIn(1000);
 }
+
+var moveChev = setInterval(() => {
+  if (direction < 0) {
+    var px = "5px"
+    direction = 1
+  } else {
+    var px = "0px"
+    direction = -1
+  }
+  $chevDown.animate({
+    bottom: px
+  }, 500)
+}, 500)
+
 
 
 
@@ -86,10 +89,12 @@ var headingsRight = $(".heading-right")
 var texts = $(".text")
 
 
-function animateBlocks() {
-  if (state.page < 3 && !state.pageAnimations[state.page]) {
+function animateBlocks(page) {
+  if (page == 0) {
+    moveChev
+  } else if (page < 3 && !state.pageAnimations[page]) {
     animateText(state.page)
-  } else if (!state.pageAnimations[state.page]){
+  } else if (!state.pageAnimations[page]){
     animateIcons()
   }
 }
@@ -124,7 +129,9 @@ function animateIcons() {
       }, i*500); // delay 100 ms
     });
     $(".icon").each(function(index) {
-      $(this).delay(1500 + 200*index).fadeIn(500);
+      $(this).delay(1500 + 200*index).animate({
+        opacity: 1
+      }, 500);
     });
 }
 
@@ -138,6 +145,9 @@ window.addEventListener('wheel', function(event) {
       state.page--
     } else if (event.deltaY > 0) {
       state.page++
+      if (state.page > 0) {
+        clearInterval(moveChev)
+      }
     }
     scrollToPage(state.page)
   }
