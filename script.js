@@ -33,12 +33,15 @@ function chevron() {
   $chevDown.fadeIn(1000);
 }
 
+var chevBottom = parseInt($chevDown.css("bottom"), 10)
+
 var moveChev = setInterval(() => {
+
   if (direction < 0) {
-    var px = "5px"
+    var px =  chevBottom + 5 + "px"
     direction = 1
   } else {
-    var px = "0px"
+    var px = chevBottom + "px"
     direction = -1
   }
   $chevDown.animate({

@@ -46,7 +46,7 @@ body{
 
 #header-footer{
   color: white;
-  font-size: 5vh;
+  font-size: 4vh;
 }
 
 .chev-down{
@@ -111,8 +111,15 @@ body{
 }
 
 @media (max-width: 768px){
+  .chev-down{
+    bottom: 20px;
+  }
+  #header-text{
+    font-size: 60px;
+    line-height: 60px;
+  }
   .heading {
-    font-size: 70px;
+    font-size: 60px;
     width: 100%;
     text-align: center;
     line-height: 70px
