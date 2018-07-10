@@ -9,8 +9,8 @@ var direction = 1;
 
 var state = {
   page: 0,
-  pageAnimations: [true, false, false, false],
-  pageTops: [0, 0, 0, 0],
+  pageAnimations: [true, false, false, false, false],
+  pageTops: [0, 0, 0, 0, 0],
   calibratePageTops: () => {
     state.pageTops = state.pageTops.map((top, i) => {
       return $(".block-container").outerHeight() * -i
@@ -65,7 +65,7 @@ $window.on("resize", () => {
 })
 
 function sizeBlocks() {
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 4; i++) {
     sizeBlock(i)
   }
 }
@@ -88,13 +88,15 @@ var headingsLeft = $(".heading-left");
 var headingsRight = $(".heading-right")
 var texts = $(".text")
 
+var textIndex = 0
+
 
 function animateBlocks(page) {
   if (page == 0) {
     moveChev
   } else if (page < 3 && !state.pageAnimations[page]) {
-    animateText(state.page)
-  } else if (!state.pageAnimations[page]){
+    animateText(page)
+  } else if (page >= 3 && !state.pageAnimations[page]){
     animateIcons()
   }
 }
@@ -106,33 +108,43 @@ function animateText(page) {
     } else {
       percent = "0%"
     }
-    $(headingsLeft[page - 1]).animate({
+    $(headingsLeft[textIndex]).animate({
       right: percent
     }, 200, () => {
-      $(headingsRight[page - 1]).animate({
+      $(headingsRight[textIndex]).animate({
         left: percent
       }, () => {
-        $(texts[page - 1]).animate({
+        $(texts[textIndex]).animate({
           opacity: 1
         }, 1000, () => {
           state.pageAnimations[page] = true
+          textIndex++
         })
       })
     })
 }
 
+var iconHeadings = $(".icon-heading");
+var icons = $(".icon")
+
+var iconIndex = 0
+
 function animateIcons() {
-  $('.third-heading-item').each(function(i) {
+  $(iconHeadings[iconIndex]).children().each(function(i) {
       var item = $(this);
       setTimeout(function() {
         item.addClass('grow');
       }, i*500); // delay 100 ms
     });
-    $(".icon").each(function(index) {
+    if (iconIndex > 0) {
+      icons = $(".icon-1")
+    }
+    icons.each(function(index) {
       $(this).delay(1500 + 200*index).animate({
         opacity: 1
       }, 500);
-    });
+    })
+    iconIndex++
 }
 
 var scrolling = false;
@@ -143,7 +155,8 @@ window.addEventListener('wheel', function(event) {
     scrolling = true
     if (event.deltaY < 0 && state.page > 0) {
       state.page--
-    } else if (event.deltaY > 0) {
+    } else if (event.deltaY > 0 && state.page < 4) {
+      console.log("down")
       state.page++
       if (state.page > 0) {
         clearInterval(moveChev)
@@ -167,7 +180,7 @@ function scrollToPage(page) {
 
 $window.on("swipeup", () => {
   if (!scrolling) {
-    if (state.page < 3) {
+    if (state.page < 4) {
       state.page++
     }
     scrollToPage(state.page)

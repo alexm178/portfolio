@@ -92,6 +92,10 @@ body{
     opacity: 1;
     transition: all .5s;
   }
+  .icon-1{
+    width: 100%;
+    opacity: 0
+  }
 }
 
 @media (min-width: 576px) and (max-width: 992px){
@@ -124,6 +128,12 @@ body{
     opacity: 1;
     transition: all .5s;
   }
+  .icon-1{
+    width: 33%;
+    height: 100%;
+    opacity: 0;
+    margin-left: 33%;
+  }
 }
 
 .block-container {
@@ -155,6 +165,8 @@ body{
   width: 32%;
   opacity: 0
 }
+
+
 
 #third-heading{
   width: 100%
