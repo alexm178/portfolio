@@ -9,8 +9,8 @@ var direction = 1;
 
 var state = {
   page: 0,
-  pageAnimations: [true, false, false, false, false],
-  pageTops: [0, 0, 0, 0, 0],
+  pageAnimations: [true, false, false, false, false, false],
+  pageTops: [0, 0, 0, 0, 0, 0],
   calibratePageTops: () => {
     state.pageTops = state.pageTops.map((top, i) => {
       return $(".block-container").outerHeight() * -i
@@ -68,7 +68,7 @@ $window.on("resize", () => {
 })
 
 function sizeBlocks() {
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 5; i++) {
     sizeBlock(i)
   }
 }
@@ -158,7 +158,7 @@ window.addEventListener('wheel', function(event) {
     scrolling = true
     if (event.deltaY < 0 && state.page > 0) {
       state.page--
-    } else if (event.deltaY > 0 && state.page < 4) {
+    } else if (event.deltaY > 0 && state.page < 5) {
       console.log("down")
       state.page++
       if (state.page > 0) {
@@ -183,7 +183,7 @@ function scrollToPage(page) {
 
 $window.on("swipeup", () => {
   if (!scrolling) {
-    if (state.page < 4) {
+    if (state.page < 5) {
       state.page++
     }
     scrollToPage(state.page)
@@ -204,4 +204,14 @@ $(".chev-down").on("click", () => {
   scrollToPage(state.page)
 })
 
-console.log("hello iphone")
+$('form').on("submit", () => {
+  event.preventDefault()
+  $.ajax({
+    type: "POST",
+    url: "/contact",
+    data: {name: $("#name").val()}
+  })
+  .done((response) => {
+    console.log("done")
+  })
+})
