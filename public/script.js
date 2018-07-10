@@ -11,13 +11,14 @@ var state = {
   page: 0,
   pageAnimations: [true, false, false, false, false, false],
   pageTops: [0, 0, 0, 0, 0, 0],
-  calibratePageTops: () => {
-    state.pageTops = state.pageTops.map((top, i) => {
-      return $(".block-container").outerHeight() * -i
-    })
-  }
+
 }
 
+function calibratePageTops() {
+  state.pageTops = state.pageTops.map((top, i) => {
+    return $(".block-container").outerHeight() * -i
+  })
+}
 
 function typeWriter() {
   if (i < txt.length) {
@@ -55,7 +56,7 @@ var moveChev = setInterval(() => {
 
 $window.on("load", () => {
   sizeBlocks()
-  state.calibratePageTops()
+  calibratePageTops()
   $("#header-text").fadeIn(1500, "linear", () => {
     typeWriter()
   });
@@ -64,7 +65,7 @@ $window.on("load", () => {
 $window.on("resize", () => {
   console.log("resize")
   sizeBlocks()
-  state.calibratePageTops()
+  calibratePageTops()
 })
 
 function sizeBlocks() {
