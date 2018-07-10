@@ -15,14 +15,14 @@ var state = {
 }
 
 function calibratePageTops() {
-  state.pageTops = state.pageTops.map((top, i) => {
+  state.pageTops = state.pageTops.map(function(top, i) {
     return $(".block-container").outerHeight() * -i
   })
 }
 
 function typeWriter() {
   if (i < txt.length) {
-    $("#header-footer").html(()=>{ return ($("#header-footer").html() + txt.charAt(i))});
+    $("#header-footer").html(function(){ return ($("#header-footer").html() + txt.charAt(i))});
     i++;
     setTimeout(typeWriter, speed);
   } else {
@@ -36,7 +36,7 @@ function chevron() {
 
 var chevBottom = parseInt($chevDown.css("bottom"), 10)
 
-var moveChev = setInterval(() => {
+var moveChev = setInterval(function() {
 
   if (direction < 0) {
     var px =  chevBottom + 5 + "px"
@@ -54,15 +54,15 @@ var moveChev = setInterval(() => {
 
 
 
-$window.on("load", () => {
+$window.on("load", function() {
   sizeBlocks()
   calibratePageTops()
-  $("#header-text").fadeIn(1500, "linear", () => {
+  $("#header-text").fadeIn(1500, "linear", function() {
     typeWriter()
   });
 })
 
-$window.on("resize", () => {
+$window.on("resize", function() {
   console.log("resize")
   sizeBlocks()
   calibratePageTops()
@@ -114,13 +114,13 @@ function animateText(page) {
     }
     $(headingsLeft[textIndex]).animate({
       right: percent
-    }, 200, () => {
+    }, 200, function() {
       $(headingsRight[textIndex]).animate({
         left: percent
-      }, () => {
+      }, function() {
         $(texts[textIndex]).animate({
           opacity: 1
-        }, 1000, () => {
+        }, 1000, function() {
           state.pageAnimations[page] = true
           textIndex++
         })
@@ -174,15 +174,15 @@ window.addEventListener('wheel', function(event) {
 
 function scrollToPage(page) {
   $all.animate({top: state.pageTops[page]}, 1000);
-  setTimeout(() => {
+  setTimeout(function() {
     animateBlocks(page)
   }, 500)
-  setTimeout(() => {
+  setTimeout(function() {
     scrolling = false
   }, 2000)
 }
 
-$window.on("swipeup", () => {
+$window.on("swipeup", function() {
   if (!scrolling) {
     if (state.page < 5) {
       state.page++
@@ -191,7 +191,7 @@ $window.on("swipeup", () => {
   }
 })
 
-$window.on("swipedown", () => {
+$window.on("swipedown", function() {
   if (!scrolling) {
     if (state.page > 0) {
       state.page--
@@ -200,19 +200,19 @@ $window.on("swipedown", () => {
   }
 })
 
-$(".chev-down").on("click", () => {
+$(".chev-down").on("click", function() {
   state.page++;
   scrollToPage(state.page)
 })
 
-$('form').on("submit", () => {
+$('form').on("submit", function() {
   event.preventDefault()
   $.ajax({
     type: "POST",
     url: "/contact",
     data: {name: $("#name").val()}
   })
-  .done((response) => {
+  .done(function(response) {
     console.log("done")
   })
 })
