@@ -59,6 +59,7 @@ body{
   font-size: 4em;
   display: none;
   line-height: 1px;
+  cursor: pointer;
 }
 
 .heading{
@@ -70,49 +71,9 @@ body{
    font-family: "Anton";
 }
 
-@media (min-width: 768px) {
-  .heading-container {
-    height: 150px;
-  }
-  .heading {
-    font-size: 100px;
-  }
-  .heading-left {
-    text-align: right;
-  }
-  .heading-right {
-    text-align: left
-  }
-  #header-text{
-    font-size: 100px;
-    line-height: 100px;
-  }
-  .third-heading-item.grow{
-    height: 120px;
-    opacity: 1;
-    transition: all .5s;
-  }
-  .icon-1{
-    width: 100%;
-    opacity: 0
-  }
-}
-
-@media (min-width: 576px) and (max-width: 992px){
-  .heading-container {
-    height: 105px;
-  }
-}
-
-@media (min-width: 576px) {
-  .text {
-    font-size: 25px;
-  }
-}
-
-@media (max-width: 768px){
+@media (max-width: 576px){
   .chev-down{
-    bottom: 20px;
+    bottom: 10vh;
   }
   #header-text{
     font-size: 60px;
@@ -138,10 +99,75 @@ body{
   .icon-1{
     width: 33%;
     height: 100%;
-    opacity: 0;
     margin-left: 33%;
   }
+  .contact-heading {
+    height: 70px !important
+  }
+  .icon{
+    width: 32%
+  }
 }
+
+
+@media (min-width: 576px) {
+  #header-text{
+    font-size: 80px;
+    line-height: 80px;
+  }
+  .heading-container {
+    height: 105px;
+  }
+  .heading {
+    font-size: 50px;
+  }
+  .text {
+    font-size: 20px
+  }
+  .heading-left {
+    text-align: right;
+  }
+  .heading-right {
+    text-align: left
+  }
+  .icon-1{
+    width: 100%;
+  }
+  .icons {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .icon{
+    width: 31%;
+  }
+}
+
+@media (min-width: 992px) {
+  #header-text{
+    font-size: 100px;
+    line-height: 100px;
+  }
+  .heading-container {
+    height: 134.4px;
+  }
+  .heading {
+    font-size: 90px;
+  }
+
+
+  .third-heading-item.grow{
+    height: 120px;
+    opacity: 1;
+    transition: all .5s;
+  }
+  .text {
+    font-size: 25px;
+  }
+}
+
+
+
+
 
 .block-container {
   height: 100vh;
@@ -162,14 +188,12 @@ body{
 
 
 .text {
-  /* text-align: center; */
   opacity: 0;
   padding-left: 5px;
   padding-right: 5px;
 }
 
-.icon{
-  width: 32%;
+.icon, .icon-1{
   opacity: 0
 }
 
@@ -191,15 +215,6 @@ body{
    font-family: "Anton";
 }
 
-/* .icons {
-  height: 150px
-} */
-
-
-/* .border-container{
-  border: 3px solid #330066;
-  border-radius: 10px;
-} */
 
 p {
   margin-bottom: 0px !important
@@ -214,16 +229,37 @@ input, textarea{
   width: 100%;
   -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
 border-radius: 8px;
-border: 1px solid rgba(0, 0, 0, 0.125);
+border: 0px solid rgba(0, 0, 0, 0.125);
 resize: none
 }
 
-/* .form-btn {
-  width: 49%
-} */
-
 textarea {
+  height: 24vh;
+  font-size: 3vh;
+  padding-top: 2.2vh;
+  padding-left: 2px;
+}
 
+input{
+  height: 8vh;
+  font-size: 3vh;
+  padding-top: 2.2vh;
+  padding-left: 2px;
+}
+
+.placeholder {
+  position: absolute;
+  font-size: 2vh;
+  padding: 2px;
+}
+
+button {
+  width: 100%
+}
+
+.heading, .third-heading-item {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }

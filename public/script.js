@@ -4,6 +4,7 @@ var speed = 50; /* The speed/duration of the effect in milliseconds */
 var $window = $(window)
 var $all = $(".all")
 var $chevDown = $(".chev-down");
+
 var direction = 1;
 
 
@@ -11,7 +12,6 @@ var state = {
   page: 0,
   pageAnimations: [true, false, false, false, false, false],
   pageTops: [0, 0, 0, 0, 0, 0],
-
 }
 
 function calibratePageTops() {
@@ -57,16 +57,57 @@ var moveChev = setInterval(function() {
 $window.on("load", function() {
   sizeBlocks()
   calibratePageTops()
+  formatHeadings()
   $("#header-text").fadeIn(1500, "linear", function() {
     typeWriter()
   });
 })
 
 $window.on("resize", function() {
-  console.log("resize")
   sizeBlocks()
   calibratePageTops()
+  formatHeadings()
 })
+
+function formatHeadings() {
+  var headingsLeft = $(".heading-left");
+  var headingsRight = $(".heading-right")
+  if ($window.width() > 576) {
+    $(headingsLeft[0]).html("STELLAR&nbsp");
+    $(headingsLeft[1]).html("A GALAXY OF&nbsp")
+    headingsLeft.each(function(index) {
+      if (state.pageAnimations[index + 1]) {
+        $(headingsLeft[index]).css({
+          "right": "50%"
+        })
+      }
+    })
+    headingsRight.each(function(index) {
+      if (state.pageAnimations[index + 1]) {
+        $(headingsRight[index]).css({
+          "left": "50%"
+        })
+      }
+    })
+  } else {
+    $(headingsLeft[0]).html("STELLAR");
+    $(headingsLeft[1]).html("A GALAXY OF");
+    headingsLeft.each(function(index) {
+      if (state.pageAnimations[index + 1]) {
+        $(headingsLeft[index]).css({
+          "right": "0px"
+        })
+      }
+    })
+    headingsRight.each(function(index) {
+      if (state.pageAnimations[index + 1]) {
+        $(headingsRight[index]).css({
+          "left": "0px"
+        })
+      }
+    })
+  }
+}
 
 function sizeBlocks() {
   for (var i = 0; i < 5; i++) {
@@ -88,8 +129,7 @@ function sizeBlock(i) {
 
 
 
-var headingsLeft = $(".heading-left");
-var headingsRight = $(".heading-right")
+
 var texts = $(".text")
 
 var textIndex = 0
@@ -106,8 +146,10 @@ function animateBlocks(page) {
 }
 
 function animateText(page) {
+  var headingsLeft = $(".heading-left");
+  var headingsRight = $(".heading-right")
     var percent;
-    if ($window.width() > 768) {
+    if ($window.width() > 576) {
       percent = "50%"
     } else {
       percent = "0%"
@@ -205,14 +247,41 @@ $(".chev-down").on("click", function() {
   scrollToPage(state.page)
 })
 
-$('form').on("submit", function() {
+
+var btn = $(".form-btn")
+
+btn.on("click", function(event) {
   event.preventDefault()
   $.ajax({
     type: "POST",
     url: "/contact",
-    data: {name: $("#name").val()}
+    data: {
+      name: $("#name").val(),
+      email: $("#email").val(),
+      subject: $("#subject").val(),
+      phone: $("#phone").val(),
+      content: $("#content").val(),
+    }
   })
   .done(function(response) {
-    console.log("done")
+    if (response === "200") {
+      btn.text("Success!")
+      btn.removeClass("btn-primary");
+      btn.addClass("btn-success disabled");
+      $("input, textarea").val("")
+    }
   })
+  .fail(() => {
+    alert("Something went wrong. Please Retry.")
+  })
+})
+
+$("input").on("change", () => {
+
+  if(btn.hasClass("disabled")) {
+    console.log("disabled");
+    btn.text("Submit")
+    btn.removeClass("btn-success disabled");
+    btn.addClass("btn-primary");
+  }
 })
