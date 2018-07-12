@@ -29,7 +29,7 @@ app.get("*", (req, res) => {
 app.post("/contact", (req, res) => {
   var mailOptions = {
     from: req.body.name + " <" + req.body.email + ">",
-    to: 'alexandermiller178@gmail.com',
+    to: process.env.EMAIL,
     subject: req.body.subject,
     text: req.body.content + "\n" + req.body.phone
   };

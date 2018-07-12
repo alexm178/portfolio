@@ -72,9 +72,12 @@ $window.on("resize", function() {
 function formatHeadings() {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  if ($window.width() > 576) {
+  if (window.outerWidth >= 768) {
+    console.log("large")
     $(headingsLeft[0]).html("STELLAR&nbsp");
-    $(headingsLeft[1]).html("A GALAXY OF&nbsp")
+    $(headingsLeft[1]).html("A GALAXY OF&nbsp");
+    // $("#STAR").html("STAR&nbsp")
+    // $("#RESPONSIVE").html("RESPONSIVE&nbsp")
     headingsLeft.each(function(index) {
       if (state.pageAnimations[index + 1]) {
         $(headingsLeft[index]).css({
@@ -92,6 +95,8 @@ function formatHeadings() {
   } else {
     $(headingsLeft[0]).html("STELLAR");
     $(headingsLeft[1]).html("A GALAXY OF");
+    // $("#STAR").html("STAR")
+    // $("#RESPONSIVE").html("RESPONSIVE")
     headingsLeft.each(function(index) {
       if (state.pageAnimations[index + 1]) {
         $(headingsLeft[index]).css({
@@ -149,7 +154,7 @@ function animateText(page) {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
     var percent;
-    if ($window.width() > 576) {
+    if (window.outerWidth >= 768) {
       percent = "50%"
     } else {
       percent = "0%"
@@ -202,7 +207,6 @@ window.addEventListener('wheel', function(event) {
     if (event.deltaY < 0 && state.page > 0) {
       state.page--
     } else if (event.deltaY > 0 && state.page < 5) {
-      console.log("down")
       state.page++
       if (state.page > 0) {
         clearInterval(moveChev)
@@ -269,14 +273,16 @@ btn.on("click", function(event) {
       btn.removeClass("btn-primary");
       btn.addClass("btn-success disabled");
       $("input, textarea").val("")
+    } else {
+      alert("Something went wrong. Please Retry.")
     }
   })
-  .fail(() => {
+  .fail(function() {
     alert("Something went wrong. Please Retry.")
   })
 })
 
-$("input").on("change", () => {
+$("input").on("change", function(){
 
   if(btn.hasClass("disabled")) {
     console.log("disabled");
