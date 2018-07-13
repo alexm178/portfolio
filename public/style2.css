@@ -93,13 +93,6 @@ body{
 
 
 
-
-#third-heading{
-  width: 100%;
-  font-size: 70px;
-  line-height: 70px;
-}
-
 .third-heading-item{
   height: 0px;
   opacity: 0;
@@ -207,7 +200,6 @@ button {
   }
 
   .icons {
-    height: 25vh !important;
     text-align: center
   }
   .icon, .icon-1{
@@ -215,11 +207,11 @@ button {
   }
 
   .icon-1-container{
-    height: 25vh !important;
+    height: 25vh;
     text-align: center
   }
 
-@media (min-width: 406px) {
+@media (min-width: 348px) {
   #third-heading{
     height: 70px
   }
@@ -235,23 +227,34 @@ button {
 
 
 @media (min-width: 576px) {
-  #first-heading-1 {
-    top: 0%
-  }
+
   .heading {
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 100px;
+    line-height: 100px;
   }
   #header-text{
     font-size: 80px;
     line-height: 80px;
   }
   .heading-container {
-    height: 70px;
+    height: 200px !important;
   }
 
   .text {
     font-size: 20px
+  }
+
+
+  .third-heading-item.grow{
+    height: 100px;
+    opacity: 1;
+    transition: all .5s;
+  }
+}
+
+@media (min-width: 768px) {
+  #first-heading-1 {
+    top: 0%
   }
   .heading-left {
     text-align: right;
@@ -259,26 +262,6 @@ button {
   .heading-right {
     text-align: left
   }
-  .icon-1{
-    width: 100%;
-    margin-left: 0px;
-  }
-  .icons {
-    height: auto !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-  .icon{
-    width: 31%;
-  }
-  .third-heading-item.grow{
-    height: 120px;
-    opacity: 1;
-    transition: all .5s;
-  }
-}
-
-@media (min-width: 768px) {
   .heading {
     font-size: 70px;
     line-height: 70px
@@ -288,7 +271,7 @@ button {
     line-height: 80px;
   }
   .heading-container {
-    height: 105px;
+    height: 70px !important;
   }
 
   .text {
@@ -300,20 +283,33 @@ button {
   .heading-right {
     text-align: left
   }
-  .icon-1{
-    width: 100%;
-  }
 
-  .icon{
-    width: 31%;
-  }
   .third-heading-item.grow{
     height: 120px;
     opacity: 1;
     transition: all .5s;
   }
+
+
+  .icon-1{
+    width: 100%;
+    margin-left: 0px;
+  }
+  .icon-1-container {
+    height: auto
+  }
   .icons {
-    height: auto !important
+    height: auto !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-top: 15px;
+  }
+  .icon{
+    width: 31%;
+  }
+
+  .chev-down {
+    bottom: 5px;
   }
 }
 
@@ -324,7 +320,7 @@ button {
     line-height: 100px;
   }
   .heading-container {
-    height: 134.4px;
+    height: 90px !important;
   }
   .heading {
     font-size: 90px;

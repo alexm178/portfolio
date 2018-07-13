@@ -72,7 +72,7 @@ $window.on("resize", function() {
 function formatHeadings() {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  if (window.outerWidth >= 768) {
+  if (window.outerWidth >= 756) {
     console.log("large")
     $(headingsLeft[0]).html("STELLAR&nbsp");
     $(headingsLeft[1]).html("A GALAXY OF&nbsp");
@@ -154,7 +154,7 @@ function animateText(page) {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
     var percent;
-    if (window.outerWidth >= 768) {
+    if (window.outerWidth >= 756) {
       percent = "50%"
     } else {
       percent = "0%"
