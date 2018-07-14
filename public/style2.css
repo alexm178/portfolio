@@ -212,7 +212,7 @@ opacity: 1 */
     font-size: 60px;
     line-height: 60px;
   }
-  #first-heading-1 {
+  .heading-right {
     top: 50%
   }
   .heading-container {
@@ -243,6 +243,10 @@ opacity: 1 */
   }
   .icon, .icon-1{
     opacity: 0
+  }
+
+  #icon-1-container {
+    width: 100%
   }
 
 
@@ -277,6 +281,45 @@ opacity: 1 */
   .chev-down {
     font-size: 35px;
     bottom: 20vh;
+  }
+  .heading {
+    font-size: 45px;
+    line-height: 45px;
+  }
+  .third-heading-item.grow{
+    height: 45px;
+  }
+  .heading-container {
+    height: 45px
+  }
+  .heading-left {
+    text-align: right;
+  }
+  .heading-right {
+    text-align: left
+  }
+  .icons {
+    display: inline-block;
+    width: 33%
+  }
+  .heading-right {
+    top: 0px
+  }
+  .icons {
+    margin-top: 15px;
+    height: auto !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  #icon-1-container {
+    width: 75%;
+    margin: 0 auto
+  }
+  #third-heading{
+    height: 45px
+  }
+  #fourth-heading{
+    height: 45px
   }
 }
 
