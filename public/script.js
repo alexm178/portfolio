@@ -9,7 +9,7 @@ var direction = 1;
 
 
 var state = {
-  page: 4,
+  page: 0,
   pageAnimations: [true, false, false, false, false, false],
   pageTops: [0, 0, 0, 0, 0, 0],
 }
@@ -127,7 +127,7 @@ function sizeBlock(i) {
   var vph = $window.innerHeight()
   var $block = $($(".block").get(i))
   $($(".heading-container").get(i)).css({
-    "margin-top": (vph - $block.height()) / 2 + "px"
+    "margin-top": (vph - $block.height()) / 2  + "px"
   })
 }
 
