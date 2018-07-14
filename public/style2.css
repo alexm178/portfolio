@@ -31,7 +31,7 @@ body{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 15%;
+  padding-left: 15%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing:    border-box;
   -ms-box-sizing:     border-box;
@@ -49,12 +49,13 @@ body{
 
 #header-text{
   color: white;
-  display: none;
+  opacity: 0
 }
 
 #header-footer{
   color: white;
   font-size: 16px;
+  height: 16px;
 }
 
 .chev-down{
@@ -156,17 +157,6 @@ input{
   padding: 2px;
 }
 
-/* button {
-  width: 100%
-} */
-
-.navbar-hide {
- background-color: rgba(0, 0, 0, 0) !important
-}
-
-.navbar-trans{
-  background-color: rgba(248, 249, 250)
-}
 
 .navbar-show {
   background-color: rgba(21, 11, 68, .5)
@@ -253,7 +243,7 @@ opacity: 1 */
   }
 
 
-@media (min-width: 348px) {
+@media (min-width: 348px) and (min-height: 576px) {
   #third-heading{
     height: 70px
   }
@@ -264,7 +254,7 @@ opacity: 1 */
   }
 }
 
-@media (min-width: 432px) {
+@media (min-width: 432px)  and (min-height: 576px){
   #fourth-heading{
     height: 70px
   }
@@ -280,6 +270,8 @@ opacity: 1 */
   }
   #header-footer {
     font-size: 12px;
+    line-height: 12px;
+    height: 12px;
   }
   .chev-down {
     font-size: 35px;
@@ -328,7 +320,7 @@ opacity: 1 */
 
 
 
-@media (min-width: 576px) and (min-height: 768px){
+@media (min-width: 576px) and (min-height: 576px){
 
   .heading {
     font-size: 100px;
@@ -354,7 +346,7 @@ opacity: 1 */
   }
 }
 
-@media (min-width: 768px) and (min-height: 768px){
+@media (min-width: 768px) and (min-height: 576px){
   #first-heading-1 {
     top: 0%
   }
@@ -410,10 +402,15 @@ opacity: 1 */
 }
 
 
-@media (min-width: 992px) and (min-height: 768px){
+@media (min-width: 992px) and (min-height: 576px){
   #header-text{
     font-size: 100px;
     line-height: 100px;
+  }
+  #header-footer {
+    font-size: 25px;
+    line-height: 25px;
+    height: 25px;
   }
   .heading-container {
     height: 90px !important;

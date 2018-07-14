@@ -61,7 +61,7 @@ $window.on("load", function() {
   formatHeadings()
   sizeBlocks()
   calibratePageTops()
-  $("#header-text").fadeIn(1500, "linear", function() {
+  $("#header-text").animate({opacity: 1}, 1500, "linear", function() {
     typeWriter()
   });
 })
@@ -117,6 +117,7 @@ function sizeBlocks(resize) {
   for (var i = 0; i < 5; i++) {
     sizeBlock(i)
   }
+  $("#header-all").css({"padding-top": (window.innerHeight - $(this).outerHeight) / 2 + "px"})
   if(resize) {
     calibratePageTops(true)
   }
