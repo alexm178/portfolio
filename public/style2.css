@@ -276,6 +276,7 @@ opacity: 1 */
   }
   .chev-down {
     font-size: 35px;
+    bottom: 20vh;
   }
 }
 
