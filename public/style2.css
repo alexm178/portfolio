@@ -268,8 +268,9 @@ opacity: 1 */
 
 @media all and (orientation:landscape) and (max-width: 768px){
   #header-text {
-    font-size: 30px;
-    line-height: 30px
+    color: blue;
+    font-size: 25px;
+    line-height: 25px
   }
   .chev-down {
     bottom: 5px;
