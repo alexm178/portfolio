@@ -54,7 +54,7 @@ body{
 
 #header-footer{
   color: white;
-  font-size: 4vh;
+  font-size: 16px;
 }
 
 .chev-down{
@@ -266,20 +266,23 @@ opacity: 1 */
   }
 }
 
-@media all and (orientation:landscape) and (max-width: 768px){
+@media all and (orientation:landscape) and (max-width: 768px) and (max-height: 768px){
   #header-text {
-    color: blue;
-    font-size: 25px;
-    line-height: 25px
+    font-size: 50px;
+    line-height: 50px
+  }
+  #header-footer {
+    font-size: 12px;
   }
   .chev-down {
     bottom: 5px;
+    font-size: 35px;
   }
 }
 
 
 
-@media (min-width: 576px) {
+@media (min-width: 576px) and (min-height: 768px){
 
   .heading {
     font-size: 100px;
@@ -305,7 +308,7 @@ opacity: 1 */
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 768px){
   #first-heading-1 {
     top: 0%
   }
@@ -361,7 +364,7 @@ opacity: 1 */
 }
 
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (min-height: 768px){
   #header-text{
     font-size: 100px;
     line-height: 100px;
