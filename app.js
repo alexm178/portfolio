@@ -22,8 +22,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html")
+})
+
+app.get("/footer", (req, res) => {
+  res.sendFile(__dirname + "/public/footer.html")
 })
 
 app.post("/contact", (req, res) => {

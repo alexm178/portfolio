@@ -12,12 +12,31 @@ body{
   overflow-y: hidden;
 }
 
-#navbar {
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.5);
-  z-index: 1;
-  width: 100%;
-  height: 40px
+#footer-container {
+  margin-top: 50vh;
+  height: 50vh;
+
+}
+
+#footer-main {
+  background-color: rgba(21, 11, 68, 0.5);
+  height: 40vh
+}
+
+#footer-brand {
+  color: white
+}
+
+#contact-btn {
+  background-color: #352382;
+  height: 10vh;
+  color: white;
+  border-radius: 0;
+  font-size: 5vh
+}
+
+#contact-btn:hover {
+  background-color: rgba(21, 11, 68, 1)
 }
 
 *{
