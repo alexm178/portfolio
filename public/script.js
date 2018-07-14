@@ -72,12 +72,11 @@ $window.on("resize", function() {
 function formatHeadings() {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  console.log(window.innerHeight)
-  if ($window.outerWidth >= 756 || ($window.outerWidth > $window.innerHeight && $window.innerHeight < 756)) {
+  console.log((window.outerWidth > window.innerHeight && window.innerHeight < 756))
+  if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
+    console.log("large")
     $(headingsLeft[0]).html("STELLAR&nbsp");
     $(headingsLeft[1]).html("A GALAXY OF&nbsp");
-    // $("#STAR").html("STAR&nbsp")
-    // $("#RESPONSIVE").html("RESPONSIVE&nbsp")
     headingsLeft.each(function(index) {
       if (state.pageAnimations[index + 1]) {
         $(headingsLeft[index]).css({
@@ -95,8 +94,6 @@ function formatHeadings() {
   } else {
     $(headingsLeft[0]).html("STELLAR");
     $(headingsLeft[1]).html("A GALAXY OF");
-    // $("#STAR").html("STAR")
-    // $("#RESPONSIVE").html("RESPONSIVE")
     headingsLeft.each(function(index) {
       if (state.pageAnimations[index + 1]) {
         $(headingsLeft[index]).css({
@@ -154,7 +151,8 @@ function animateText(page) {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
     var percent;
-    if ($window.outerWidth() >= 756 || ($window.outerWidth() > $window.innerHeight() && $window.innerHeight() < 756)) {
+    console.log((window.outerWidth > window.innerHeight && window.innerHeight < 756))
+    if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
       percent = "50%"
     } else {
       percent = "0%"
