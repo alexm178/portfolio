@@ -16,11 +16,8 @@ var state = {
 
 function calibratePageTops(resize) {
   state.pageTops = state.pageTops.map(function(top, i) {
-    return $(".block-container").outerHeight() * -i
+    return window.innerHeight * -i
   })
-  if (resize) {
-    scrollToPage(state.page)
-  }
 }
 
 function typeWriter() {
@@ -67,7 +64,10 @@ $window.on("load", function() {
 })
 
 $window.on("resize", function() {
-  formatHeadings(true)
+  calibratePageTops()
+  formatHeadings()
+  sizeBlocks()
+  $all.css({top: state.pageTops[state.page]})
 })
 
 function formatHeadings(resize) {
@@ -108,17 +108,11 @@ function formatHeadings(resize) {
       }
     })
   }
-  if (resize) {
-    sizeBlocks(true)
-  }
 }
 
 function sizeBlocks(resize) {
   for (var i = 0; i < 5; i++) {
     sizeBlock(i)
-  }
-  if(resize) {
-    calibratePageTops(true)
   }
 }
 
@@ -181,16 +175,14 @@ function animateText(page) {
 var iconHeadings = $(".icon-heading");
 var icons = $(".icon")
 
-var iconIndex = 0
-
 function animateIcons() {
-  $(iconHeadings[iconIndex]).children().each(function(i) {
+  $(iconHeadings[state.page - 3]).children().each(function(i) {
       var item = $(this);
       setTimeout(function() {
         item.addClass('grow');
       }, i*500); // delay 100 ms
     });
-    if (iconIndex > 0) {
+    if (state.page === 4) {
       icons = $(".icon-1")
     }
     icons.each(function(index) {
@@ -198,7 +190,6 @@ function animateIcons() {
         opacity: 1
       }, 500);
     })
-    iconIndex++
 }
 
 var scrolling = false;
@@ -222,6 +213,7 @@ window.addEventListener('wheel', function(event) {
 });
 
 function scrollToPage(page) {
+  console.log("scroll")
   $all.animate({top: state.pageTops[page]}, 1000);
   setTimeout(function() {
     animateBlocks(page)
