@@ -72,7 +72,8 @@ $window.on("resize", function() {
 function formatHeadings() {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  if ($window.outerWidth() >= 756 || ($window.outerWidth() > $window.innerHeight() && $window.innerHeight() < 756)) {
+  console.log(window.innerHeight)
+  if ($window.outerWidth >= 756 || ($window.outerWidth > $window.innerHeight && $window.innerHeight < 756)) {
     $(headingsLeft[0]).html("STELLAR&nbsp");
     $(headingsLeft[1]).html("A GALAXY OF&nbsp");
     // $("#STAR").html("STAR&nbsp")
