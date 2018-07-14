@@ -117,7 +117,6 @@ function sizeBlocks(resize) {
   for (var i = 0; i < 5; i++) {
     sizeBlock(i)
   }
-  $("#header-all").css({"padding-top": (window.innerHeight - $("#header-all").outerHeight()) / 2 + "px"})
   if(resize) {
     calibratePageTops(true)
   }
