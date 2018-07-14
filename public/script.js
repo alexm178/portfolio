@@ -73,7 +73,7 @@ $window.on("resize", function() {
 function formatHeadings(resize) {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
+  if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 576)) {
     $(headingsLeft[0]).html("STELLAR&nbsp");
     $(headingsLeft[1]).html("A GALAXY OF&nbsp");
     headingsLeft.each(function(index) {
@@ -151,7 +151,7 @@ function animateText(page) {
   var headingsRight = $(".heading-right")
     var percent;
     console.log((window.outerWidth > window.innerHeight && window.innerHeight < 756))
-    if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
+    if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 576)) {
       percent = "50%"
     } else {
       percent = "0%"
@@ -240,6 +240,23 @@ $window.on("swipedown", function() {
     scrollToPage(state.page)
   }
 })
+
+document.addEventListener("keydown", function(event) {
+  switch (event.which) {
+    case 40:
+      state.page++;
+      scrollToPage(state.page);
+      break;
+    case 38:
+      state.page--;
+      scrollToPage(state.page)
+      break;
+    default:
+      return
+  }
+  event.preventDefault()
+})
+
 
 $(".chev-down").on("click", function() {
   state.page++;
