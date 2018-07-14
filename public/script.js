@@ -14,10 +14,13 @@ var state = {
   pageTops: [0, 0, 0, 0, 0],
 }
 
-function calibratePageTops() {
+function calibratePageTops(resize) {
   state.pageTops = state.pageTops.map(function(top, i) {
     return $(".block-container").outerHeight() * -i
   })
+  if (resize) {
+    scrollToPage(state.page)
+  }
 }
 
 function typeWriter() {
@@ -55,27 +58,22 @@ var moveChev = setInterval(function() {
 
 
 $window.on("load", function() {
+  formatHeadings()
   sizeBlocks()
   calibratePageTops()
-  formatHeadings()
   $("#header-text").fadeIn(1500, "linear", function() {
     typeWriter()
   });
 })
 
 $window.on("resize", function() {
-  calibratePageTops()
-  formatHeadings()
-  sizeBlocks()
-  scrollToPage(state.page)
+  formatHeadings(true)
 })
 
-function formatHeadings() {
+function formatHeadings(resize) {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  console.log((window.outerWidth > window.innerHeight && window.innerHeight < 756))
   if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
-    console.log("large")
     $(headingsLeft[0]).html("STELLAR&nbsp");
     $(headingsLeft[1]).html("A GALAXY OF&nbsp");
     headingsLeft.each(function(index) {
@@ -110,11 +108,17 @@ function formatHeadings() {
       }
     })
   }
+  if (resize) {
+    sizeBlocks(true)
+  }
 }
 
-function sizeBlocks() {
+function sizeBlocks(resize) {
   for (var i = 0; i < 5; i++) {
     sizeBlock(i)
+  }
+  if(resize) {
+    calibratePageTops(true)
   }
 }
 
@@ -124,8 +128,8 @@ function sizeBlocks() {
 function sizeBlock(i) {
   var vph = $window.innerHeight()
   var $block = $($(".block").get(i))
-  $($(".heading-container").get(i)).css({
-    "margin-top": (vph - $block.height()) / 2  + "px"
+  $block.css({
+    "top": (vph - $block.height()) / 2  + "px"
   })
 }
 

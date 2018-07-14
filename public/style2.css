@@ -71,11 +71,14 @@ body{
 }
 
 
-
+.block {
+  position: absolute
+}
 
 
 .block-container {
   height: 100vh;
+  position: relative;
 }
 
 .heading-container {
