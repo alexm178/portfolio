@@ -10,8 +10,8 @@ var direction = 1;
 
 var state = {
   page: 0,
-  pageAnimations: [true, false, false, false, false, false],
-  pageTops: [0, 0, 0, 0, 0, 0],
+  pageAnimations: [true, false, false, false, false],
+  pageTops: [0, 0, 0, 0, 0],
 }
 
 function calibratePageTops() {
