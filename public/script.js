@@ -64,9 +64,10 @@ $window.on("load", function() {
 })
 
 $window.on("resize", function() {
-  sizeBlocks()
   calibratePageTops()
   formatHeadings()
+  sizeBlocks()
+  scrollToPage(state.page)
 })
 
 function formatHeadings() {
