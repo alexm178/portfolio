@@ -10,6 +10,7 @@
   <meta name="description" content="description here">
   <meta name="keywords" content="keywords,here">
   <link rel="icon" type="image/png" href="./logo-dark.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/entypo/2.0/entypo-social.woff"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Anton|Titillium+Web:700,400" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -17,24 +18,25 @@
 </head>
 
 <body>
-  <nav class="navbar fixed-top navbar-expand-md navbar-show navbar-dark">
-    <a class="navbar-brand"  href="#"><img src="./logo.png" style="height: 30px"></img><span id="brand">&nbsp&nbspAlexander Anthony Designs</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link white active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link white" href="#">About</a>
-        <a class="nav-item nav-link white" href="#">Articles</a>
-        <a class="nav-item nav-link white" href="#">Contact</a>
-      </div>
-    </div>
 
-  </nav>
+
 
 
   <div class="all">
+    <nav class="navbar fixed-top navbar-expand-md navbar-show navbar-dark">
+      <a class="navbar-brand"  href="#"><img src="./logo.png" style="height: 30px"></img><span id="brand">&nbsp&nbspAlexander Anthony Designs</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link white active" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link white" href="#">About</a>
+          <a class="nav-item nav-link white" href="#">Articles</a>
+          <a class="nav-item nav-link white" href="#">Contact</a>
+        </div>
+      </div>
+    </nav>
     <div class="block-container" id="header">
       <div class="block" id="header-all">
         <h1 id="header-text">Out of this world creations</h1>
@@ -44,8 +46,8 @@
     </div>
 
 
-    <div class="container">
-      <div class="block-container">
+
+      <div class="block-container container">
         <div class="row block" id="first-block">
           <div class="w-100 border-container">
             <div class="heading-container">
@@ -64,7 +66,7 @@
           </div>
         </div>
       </div>
-      <div class="block-container">
+      <div class="block-container container">
         <div class="row block" id="second-block">
           <div class="heading-container">
             <div class="col-md-6 heading heading-left position-absolute" id="first-heading-0">
@@ -81,7 +83,7 @@
           </div>
         </div>
       </div>
-      <div class="block-container">
+      <div class="block-container container">
         <div class="row block" id="third-block">
           <div class="col-sm-12 text-center heading heading-container icon-heading" id="third-heading">
             <div id="ALL" class="third-heading-item"><span>ALL</span></div>
@@ -105,7 +107,7 @@
           </div>
         </div>
       </div>
-      <div class="block-container">
+      <div class="block-container container">
         <div class="row block" id="second-block">
           <div class="col-sm-12 text-center heading heading-container icon-heading" id="fourth-heading">
             <div id="RESPONSIVE" class="third-heading-item">
@@ -122,6 +124,58 @@
           </div>
         </div>
       </div>
+      <div id="footer-container">
+        <button id="contact-btn">Contact</button>
+        <div id="footer-main" class="d-flex flex-column">
+            <div class="footer-content">
+              <div class="w-100 text-center footer-nav">
+                <a href="#" class="footer-nav-item" id="btt">BACK TO TOP</a>
+              </div>
+              <div class="w-100 text-center footer-nav">
+                <a href="/about" class="footer-nav-item" >ABOUT</a>
+              </div>
+              <div class="w-100 text-center footer-nav">
+                <a href="/articles" class="footer-nav-item" >ARTICLES</a>
+              </div>
+              <div class="w-100 text-center">
+                <a href="https://www.linkedin.com/in/alexander-miller-89b946160/"><i class="fab fa-linkedin link" style="color: white; font-size: 20px;"></i></a>
+                &nbsp
+                <a href="https://github.com/alexm178/"><i class="fab fa-github-square link" style="color: white; font-size: 20px;"></i></a>
+              </div>
+              <div class="w-100 text-center" style="color: white; font-size: 3vh; padding-top: 2vh">
+                Alexander<img src="./logo.png" style="width: 5vh"/>Anthony&copy
+              </div>
+            </div>
+
+              <!-- <div class="col-md-4 text-center">
+                <a href="#" class="footer-nav">BACK TO TOP</a><br/>
+                <a href="#" class="footer-nav">ABOUT</a><br/>
+                <a href="#" class="footer-nav">ARTICLES</a><br/>
+              </div>
+              <div class="col-md-4 text-center">
+                <i class="fab fa-linkedin" style="color: white"></i>
+                <i class="fab fa-github-square" style="color: white"></i>
+              </div>
+              <div class="col-md-4" id="footer-brand-container">
+                <div class="w-100">
+                  <div class="footer-text" id="websites">
+                    Alexander
+                  </div>
+                  <div class="footer-brand-container">
+                    <img id="footer-brand" src="./logo.png"/>
+                  </div>
+                  <div class="footer-text" id="done-right">
+                    Anthony &copy
+                  </div>
+                </div>
+              </div>
+            </div>-->
+
+      </div>
+    </div>
+  </div>
+
+
       <!-- <div class="block-container">
         <div class="row block" id="second-block">
           <div class="col-sm-12 text-center heading heading-container icon-heading contact-heading">
@@ -155,8 +209,9 @@
           </div>
         </div>
       </div> -->
-    </div>
-  </div>
+
+
+
 
 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
