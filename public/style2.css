@@ -13,26 +13,47 @@ body{
 }
 
 #footer-container {
-  margin-top: 50vh;
+  /* margin-top: 50vh; */
   height: 50vh;
-
 }
 
 #footer-main {
-  background-color: rgba(21, 11, 68, 0.5);
+  background-color: #0f0730;
   height: 40vh
 }
 
 #footer-brand {
+  color: white;
+  height: 5vh;
+  width: 5vh
+}
+
+.footer-content {
+  padding-top: 2vh
+}
+
+.footer-nav {
+  height: 8vh
+}
+
+.footer-nav-item {
   color: white
+} .footer-nav-item:hover {
+  color: #775dea
+}
+
+.link:hover {
+  color: #775dea !important
 }
 
 #contact-btn {
-  background-color: #352382;
+  background-color: #473789;
   height: 10vh;
   color: white;
   border-radius: 0;
-  font-size: 5vh
+  font-size: 5vh;
+  border: 0px;
+  width: 100%;
 }
 
 #contact-btn:hover {
@@ -277,9 +298,7 @@ opacity: 1 */
   #fourth-heading{
     height: 70px
   }
-  #brand {
-    font-size: 20px;
-  }
+
 }
 
 @media all and (orientation:landscape) and (max-height: 576px){
@@ -366,6 +385,9 @@ opacity: 1 */
 }
 
 @media (min-width: 768px) and (min-height: 576px){
+  #contact-btn{
+    width: 20%
+  }
   #first-heading-1 {
     top: 0%
   }
