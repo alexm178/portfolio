@@ -15,13 +15,19 @@ var state = {
 }
 
 function calibratePageTops(resize) {
+  // state.pageTops = state.pageTops.map(function(top, i) {
+  //   if (i === 5) {
+  //     return window.innerHeight * -4.5
+  //   } else {
+  //     return window.innerHeight * -i
+  //   }
+  // })
+
   state.pageTops = state.pageTops.map(function(top, i) {
-    if (i === 5) {
-      return window.innerHeight * -4.5
-    } else {
-      return window.innerHeight * -i
-    }
+    return window.innerHeight * -i
   })
+
+
 }
 
 function typeWriter() {
