@@ -24,6 +24,8 @@ function calibratePageTops(resize) {
   // })
 
   state.pageTops = state.pageTops.map(function(top, i) {
+    console.log(window.innerHeight);
+    console.log(window.innerHeight * -1)
     return window.innerHeight * -i
   })
 
