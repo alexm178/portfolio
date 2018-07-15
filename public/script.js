@@ -16,8 +16,11 @@ var state = {
 
 function calibratePageTops(resize) {
   state.pageTops = state.pageTops.map(function(top, i) {
-    return window.innerHeight * -i
+    return $(".block-container").outerHeight() * -i
   })
+  if (resize) {
+    scrollToPage(state.page)
+  }
 }
 
 function typeWriter() {
@@ -64,16 +67,13 @@ $window.on("load", function() {
 })
 
 $window.on("resize", function() {
-  calibratePageTops()
-  formatHeadings()
-  sizeBlocks()
-  $all.css({top: state.pageTops[state.page]})
+  formatHeadings(true)
 })
 
 function formatHeadings(resize) {
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
-  if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 576)) {
+  if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
     $(headingsLeft[0]).html("STELLAR&nbsp");
     $(headingsLeft[1]).html("A GALAXY OF&nbsp");
     headingsLeft.each(function(index) {
@@ -108,11 +108,17 @@ function formatHeadings(resize) {
       }
     })
   }
+  if (resize) {
+    sizeBlocks(true)
+  }
 }
 
 function sizeBlocks(resize) {
   for (var i = 0; i < 5; i++) {
     sizeBlock(i)
+  }
+  if(resize) {
+    calibratePageTops(true)
   }
 }
 
@@ -151,7 +157,7 @@ function animateText(page) {
   var headingsRight = $(".heading-right")
     var percent;
     console.log((window.outerWidth > window.innerHeight && window.innerHeight < 756))
-    if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 576)) {
+    if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 756)) {
       percent = "50%"
     } else {
       percent = "0%"
@@ -175,14 +181,16 @@ function animateText(page) {
 var iconHeadings = $(".icon-heading");
 var icons = $(".icon")
 
+var iconIndex = 0
+
 function animateIcons() {
-  $(iconHeadings[state.page - 3]).children().each(function(i) {
+  $(iconHeadings[iconIndex]).children().each(function(i) {
       var item = $(this);
       setTimeout(function() {
         item.addClass('grow');
       }, i*500); // delay 100 ms
     });
-    if (state.page === 4) {
+    if (iconIndex > 0) {
       icons = $(".icon-1")
     }
     icons.each(function(index) {
@@ -190,6 +198,7 @@ function animateIcons() {
         opacity: 1
       }, 500);
     })
+    iconIndex++
 }
 
 var scrolling = false;
@@ -213,7 +222,6 @@ window.addEventListener('wheel', function(event) {
 });
 
 function scrollToPage(page) {
-  console.log("scroll")
   $all.animate({top: state.pageTops[page]}, 1000);
   setTimeout(function() {
     animateBlocks(page)
@@ -240,23 +248,6 @@ $window.on("swipedown", function() {
     scrollToPage(state.page)
   }
 })
-
-document.addEventListener("keydown", function(event) {
-  switch (event.which) {
-    case 40:
-      state.page++;
-      scrollToPage(state.page);
-      break;
-    case 38:
-      state.page--;
-      scrollToPage(state.page)
-      break;
-    default:
-      return
-  }
-  event.preventDefault()
-})
-
 
 $(".chev-down").on("click", function() {
   state.page++;
