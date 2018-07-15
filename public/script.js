@@ -10,26 +10,14 @@ var direction = 1;
 
 var state = {
   page: 0,
-  pageAnimations: [true, false, false, false, false, true],
-  pageTops: [0, 0, 0, 0, 0, 0],
+  pageAnimations: [true, false, false, false, false],
+  pageTops: [0, 0, 0, 0, 0],
 }
 
 function calibratePageTops(resize) {
-  // state.pageTops = state.pageTops.map(function(top, i) {
-  //   if (i === 5) {
-  //     return window.innerHeight * -4.5
-  //   } else {
-  //     return window.innerHeight * -i
-  //   }
-  // })
-
   state.pageTops = state.pageTops.map(function(top, i) {
-    console.log(window.innerHeight);
-    console.log(window.innerHeight * -i)
     return window.innerHeight * -i
   })
-
-
 }
 
 function typeWriter() {
@@ -158,29 +146,27 @@ function animateBlocks(page) {
   }
 }
 
-var textIndex = 0
-
 function animateText(page) {
-  var i = textIndex;
-  textIndex++;
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
     var percent;
+    console.log((window.outerWidth > window.innerHeight && window.innerHeight < 756))
     if (window.outerWidth >= 756 || (window.outerWidth > window.innerHeight && window.innerHeight < 576)) {
       percent = "50%"
     } else {
       percent = "0%"
     }
-    $(headingsLeft[i]).animate({
+    $(headingsLeft[textIndex]).animate({
       right: percent
     }, 200, function() {
-      $(headingsRight[i]).animate({
+      $(headingsRight[textIndex]).animate({
         left: percent
       }, function() {
-        $(texts[i]).animate({
+        $(texts[textIndex]).animate({
           opacity: 1
         }, 1000, function() {
-          state.pageAnimations[page] = true;
+          state.pageAnimations[page] = true
+          textIndex++
         })
       })
     })
@@ -189,19 +175,14 @@ function animateText(page) {
 var iconHeadings = $(".icon-heading");
 var icons = $(".icon")
 
-var iconIndex = 0;
-
-
 function animateIcons() {
-  var i = iconIndex
-  iconIndex++
-  $(iconHeadings[i]).children().each(function(i) {
+  $(iconHeadings[state.page - 3]).children().each(function(i) {
       var item = $(this);
       setTimeout(function() {
         item.addClass('grow');
       }, i*500); // delay 100 ms
     });
-    if (i > 0) {
+    if (state.page === 4) {
       icons = $(".icon-1")
     }
     icons.each(function(index) {
@@ -219,7 +200,7 @@ window.addEventListener('wheel', function(event) {
     scrolling = true
     if (event.deltaY < 0 && state.page > 0) {
       state.page--
-    } else if (event.deltaY > 0 && state.page < 6) {
+    } else if (event.deltaY > 0 && state.page < 5) {
       state.page++
       if (state.page > 0) {
         clearInterval(moveChev)
@@ -232,54 +213,46 @@ window.addEventListener('wheel', function(event) {
 });
 
 function scrollToPage(page) {
+  console.log("scroll")
   $all.animate({top: state.pageTops[page]}, 1000);
   setTimeout(function() {
     animateBlocks(page)
   }, 500)
   setTimeout(function() {
     scrolling = false
-  }, 1500)
+  }, 2000)
 }
 
 $window.on("swipeup", function() {
   if (!scrolling) {
-    scrolling = true;
     if (state.page < 5) {
-      state.page++;
+      state.page++
     }
-    scrollToPage(state.page);
+    scrollToPage(state.page)
   }
 })
 
 $window.on("swipedown", function() {
-  scrolling = true;
   if (!scrolling) {
     if (state.page > 0) {
-      state.page--;
+      state.page--
     }
-    scrollToPage(state.page);
+    scrollToPage(state.page)
   }
 })
 
 document.addEventListener("keydown", function(event) {
-  if (!scrolling) {
-    scrolling = true
-    switch (event.which) {
-      case 40:
-        if (state.page < 5) {
-          state.page++;
-          scrollToPage(state.page);
-        }
-        break;
-      case 38:
-      if (state.page > 0) {
-        state.page--;
-        scrollToPage(state.page)
-      }
-        break;
-      default:
-        return
-    }
+  switch (event.which) {
+    case 40:
+      state.page++;
+      scrollToPage(state.page);
+      break;
+    case 38:
+      state.page--;
+      scrollToPage(state.page)
+      break;
+    default:
+      return
   }
   event.preventDefault()
 })
@@ -329,10 +302,4 @@ $("input").on("change", function(){
     btn.removeClass("btn-success disabled");
     btn.addClass("btn-primary");
   }
-})
-
-$("#btt").on("click", (e) => {
-  $all.animate({top: 0}, 1000);
-  state.page = 0
-  e.preventDefault()
 })
