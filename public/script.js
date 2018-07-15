@@ -249,6 +249,29 @@ $window.on("swipedown", function() {
   }
 })
 
+document.addEventListener("keydown", function(event) {
+  if (!scrolling) {
+    scrolling = true
+    switch (event.which) {
+      case 40:
+        if (state.page < 5) {
+          state.page++;
+          scrollToPage(state.page);
+        }
+        break;
+      case 38:
+      if (state.page > 0) {
+        state.page--;
+        scrollToPage(state.page)
+      }
+        break;
+      default:
+        return
+    }
+  }
+  event.preventDefault()
+})
+
 $(".chev-down").on("click", function() {
   state.page++;
   scrollToPage(state.page)
