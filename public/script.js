@@ -302,5 +302,5 @@ $("#btt").on("click", function(e) {
 })
 
 $("#contact-btn").on("click", function() {
-  window.location.href = "https://blooming-bastion-64753.herokuapp.com/contact";
+  window.location.href = "https://alexanderanthony.herokuapp.com/contact";
 })
