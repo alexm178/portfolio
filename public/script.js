@@ -153,6 +153,9 @@ function animateBlocks(page) {
 }
 
 function animateText(page) {
+  state.pageAnimations[page] = true;
+  var i = textIndex;
+  textIndex++;
   var headingsLeft = $(".heading-left");
   var headingsRight = $(".heading-right")
     var percent;
@@ -161,17 +164,16 @@ function animateText(page) {
     } else {
       percent = "0%"
     }
-    $(headingsLeft[textIndex]).animate({
+    $(headingsLeft[i]).animate({
       right: percent
     }, 200, function() {
-      $(headingsRight[textIndex]).animate({
+      $(headingsRight[i]).animate({
         left: percent
       }, function() {
-        $(texts[textIndex]).animate({
+        $(texts[i]).animate({
           opacity: 1
         }, 1000, function() {
-          state.pageAnimations[page] = true
-          textIndex++
+
         })
       })
     })
@@ -199,6 +201,22 @@ function animateIcons() {
     })
     iconIndex++
 }
+
+// $window.on("scroll", function(event) {
+//   console.log(window.pageYOffset)
+//   console.log(state.pageTops[state.page + 1] * 1.5)
+//   console.log (state.page)
+//   if (window.pageYOffset > (state.pageTops[state.page + 1] ) && state.page < 2) {
+//     state.page++
+//     if (!state.pageAnimations[state.page]) {
+//       animateText(state.p)
+//     }
+//
+//   } else if (window.pageYOffset > (state.pageTops[state.page + 1]) && state.page > 2) {
+//     state.page++
+//     animateIcons(state.page)
+//   }
+// })
 
 var scrolling = false;
 
@@ -317,7 +335,7 @@ $("input").on("change", function(){
   }
 })
 
-$("#btt").on("click", (e) => {
+$("#btt").on("click", function(e) {
   $all.animate({top: 0}, 1000);
   state.page = 0
   e.preventDefault()

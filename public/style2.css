@@ -3,7 +3,6 @@
   width: 100vw;
   overflow: hidden;
   position: absolute;
-  top: -450vh
 }
 
 body{
@@ -39,7 +38,7 @@ body{
 
 .footer-nav-item {
   color: white;
-  font-size: 5vh
+  /* font-size: 5vh */
 } .footer-nav-item:hover {
   color: #775dea
 }
