@@ -295,10 +295,12 @@ $(".chev-down").on("click", function() {
 })
 
 
-
-
 $("#btt").on("click", function(e) {
   $all.animate({top: 0}, 1000);
   state.page = 0
   e.preventDefault()
+})
+
+$("#contact-btn").on("click", () => {
+  window.location.href = "https://blooming-bastion-64753.herokuapp.com/contact";
 })
