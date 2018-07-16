@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact | Alexander Anthony Designs | Web Developer</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+  <link rel="icon" type="image/png" href="./logo-dark.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Titillium+Web:700,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <style type="text/css">
+
+  /* html {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .container {
+    flex: 1;
+    padding: 20px;
+  } */
+
+
+
+
+  .form {
+    text-align: center;
+    padding: 5px;
+  }
+
+  .form-btn:hover {
+    background-color: rgba(21, 11, 68, .75) !important
+  }
+
+  input, textarea{
+    width: 100%;
+    -webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  /* border-radius: 8px; */
+  border: 0px solid rgba(0, 0, 0, 0.125);
+  resize: none;
+
+
+   padding-left: 5px;
+  }
+
+  input {
+    font-size: 2em;
+    padding-top: .25em;
+  }
+
+  textarea {
+    padding-top: 1em
+  }
+
+
+
+  .placeholder {
+    position: absolute;
+    padding: 2px;
+    line-height: 1em
+  }
+
+
+  .navbar-show {
+    background-color: rgba(21, 11, 68, .5)
+  }
+
+  .navbar-toggler {
+    background-color: rgba(21, 11, 68, .5)
+  }
+
+  #brand {
+    font-size: 12px;
+  }
+
+  .all {
+    min-height: 100vh
+  }
+
+  .footer-nav-item {
+    color: white;
+    /* font-size: 5vh */
+  } .footer-nav-item:hover {
+    color: #775dea
+  }
+  .link:hover {
+    color: #775dea !important
+  }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-show navbar-dark">
+    <a class="navbar-brand"  href="#"><img src="./logo.png" style="height: 30px"></img><span id="brand">&nbsp&nbspAlexander Anthony Designs</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link white" href="/">Home
+        <!-- <a class="nav-item nav-link white" href="#">About</a>
+        <a class="nav-item nav-link white" href="#">Articles</a> -->
+        <a class="nav-item nav-link white active" href="/contact">Contact</a><span class="sr-only">(current)</span></a>
+      </div>
+    </div>
+  </nav>
+<div class="all d-flex flex-column" >
+  <div class="container text-center mb-auto" >
+    <h1 style="font-family: Anton; font-weight: 700; font-size: 75px; color: rgba(21, 11, 68, 0.75)">CONTACT</h1>
+    <div class="row" id="second-block">
+
+      <div class="col-md-6 form">
+        <span class="placeholder text-muted">Name</span>
+        <input id="name" type="text" name="name">
+      </div>
+      <div class="col-md-6 form">
+        <span class="placeholder text-muted">Email</span>
+        <input id="email" type="email" name="email">
+      </div>
+      <div class="col-md-6 form">
+        <span class="placeholder text-muted">Phone</span>
+        <input id="phone" type="tel" name="phone">
+      </div>
+      <div class="col-md-6 form">
+        <span class="placeholder text-muted">Subject</span>
+        <input id="subject" type="text" name="subject">
+      </div>
+      <div class="col-sm-12 form">
+        <span class="placeholder text-muted">Message</span>
+        <textarea id="content" name="content" rows=4></textarea>
+      </div>
+      <div class="col-sm-12 form">
+        <button class="form-btn btn btn-lg" style="background-color: rgba(21, 11, 68, .5); color: white">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div style="background-color: #0f0730">
+        <div>
+
+         <div class="w-100 text-center">
+            <a href="/" class="footer-nav-item" >HOME</a>
+          </div>
+          <!-- <div class="w-100 text-center footer-nav">
+            <a href="/articles" class="footer-nav-item" >ARTICLES</a>
+          </div> -->
+          <div class="w-100 text-center ">
+            <a href="https://www.linkedin.com/in/alexander-miller-89b946160/"><i class="fab fa-linkedin link" style="color: white"></i></a>
+            &nbsp
+            <a href="https://github.com/alexm178/"><i class="fab fa-github-square link" style="color: white"></i></a>
+          </div>
+          <div class="w-100 text-center" style="color: white; font-size: 2vh">
+            Alexander<img src="./logo.png" style="width: 5vh"/>Anthony&copy
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  var btn = $(".form-btn")
+
+  btn.on("click", function(event) {
+    event.preventDefault()
+    $.ajax({
+      type: "POST",
+      url: "/contact",
+      data: {
+        name: $("#name").val(),
+        email: $("#email").val(),
+        subject: $("#subject").val(),
+        phone: $("#phone").val(),
+        content: $("#content").val(),
+      }
+    })
+    .done(function(response) {
+      if (response === "200") {
+        btn.text("Success!")
+        btn.removeClass("btn-primary");
+        btn.addClass("btn-success disabled");
+        $("input, textarea").val("")
+      } else {
+        alert("Something went wrong. Please Retry.")
+      }
+    })
+    .fail(function() {
+      alert("Something went wrong. Please Retry.")
+    })
+  })
+
+  $("input").on("change", function(){
+
+    if(btn.hasClass("disabled")) {
+      console.log("disabled");
+      btn.text("Submit")
+      btn.removeClass("btn-success disabled");
+      btn.addClass("btn-primary");
+    }
+  })
+  </script>
+</bodu>

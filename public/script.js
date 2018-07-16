@@ -295,45 +295,7 @@ $(".chev-down").on("click", function() {
 })
 
 
-var btn = $(".form-btn")
 
-btn.on("click", function(event) {
-  event.preventDefault()
-  $.ajax({
-    type: "POST",
-    url: "/contact",
-    data: {
-      name: $("#name").val(),
-      email: $("#email").val(),
-      subject: $("#subject").val(),
-      phone: $("#phone").val(),
-      content: $("#content").val(),
-    }
-  })
-  .done(function(response) {
-    if (response === "200") {
-      btn.text("Success!")
-      btn.removeClass("btn-primary");
-      btn.addClass("btn-success disabled");
-      $("input, textarea").val("")
-    } else {
-      alert("Something went wrong. Please Retry.")
-    }
-  })
-  .fail(function() {
-    alert("Something went wrong. Please Retry.")
-  })
-})
-
-$("input").on("change", function(){
-
-  if(btn.hasClass("disabled")) {
-    console.log("disabled");
-    btn.text("Submit")
-    btn.removeClass("btn-success disabled");
-    btn.addClass("btn-primary");
-  }
-})
 
 $("#btt").on("click", function(e) {
   $all.animate({top: 0}, 1000);

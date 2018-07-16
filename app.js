@@ -26,8 +26,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html")
 })
 
-app.get("/footer", (req, res) => {
-  res.sendFile(__dirname + "/public/footer.html")
+app.get("/contact", (req, res) => {
+  res.sendFile(__dirname + "/public/contact.html")
 })
 
 app.post("/contact", (req, res) => {
